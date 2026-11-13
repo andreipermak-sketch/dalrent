@@ -36,7 +36,7 @@
 
   // ---------- Цены ----------
   const dayPrice = window.DALRENT_PRICING.dayPrice;
-  const pageUrl = id => 'product.html?tool=' + encodeURIComponent(id);
+  const pageUrl = id => 'product.html?tool=' + encodeURIComponent(toolById[id]?.parent || id) + (toolById[id]?.offerOnly ? '#combo' : '');
   const isProductPage = !!document.querySelector('#productPage');
 
   // ---------- Хранилище ----------
@@ -80,11 +80,12 @@
   // ---------- Фильтры ----------
   function renderCats() {
     const counts = {};
-    TOOLS.forEach(t => counts[t.cat] = (counts[t.cat] || 0) + 1);
+    const catalogTools = TOOLS.filter(t => !t.offerOnly);
+    catalogTools.forEach(t => counts[t.cat] = (counts[t.cat] || 0) + 1);
     const items = [{ id: 'all', name: 'Все инструменты' }, ...CATS];
     $('#catList').innerHTML = items.map(c => `
       <li><button data-cat="${c.id}" class="${state.cat === c.id ? 'is-active' : ''}">
-        <span>${esc(c.name)}</span><small>${c.id === 'all' ? TOOLS.length : counts[c.id] || 0}</small>
+        <span>${esc(c.name)}</span><small>${c.id === 'all' ? catalogTools.length : counts[c.id] || 0}</small>
       </button></li>`).join('');
   }
   function renderTaskChips() {
@@ -96,6 +97,7 @@
   function filtered() {
     const q = state.query.trim().toLowerCase();
     let list = TOOLS.filter(t => {
+      if (t.offerOnly) return false;
       if (state.cat !== 'all' && t.cat !== state.cat) return false;
       if (state.task && !t.tasks.includes(state.task)) return false;
       if (state.onlyStock && !(t.stock > 0)) return false;
@@ -198,6 +200,7 @@
     const id = new URLSearchParams(window.location.search).get('tool');
     const t = toolById[id];
     const root = $('#productPage');
+    if (t?.offerOnly) { window.location.replace(pageUrl(t.id)); return; }
     if (!t || !t.page) {
       root.innerHTML = '<h1>Инструмент не найден</h1><p>Вернитесь в каталог и выберите инструмент.</p>';
       return;
@@ -229,7 +232,7 @@
           <p class="deposit-note">Выберите даты — покажем аренду, расходники и всю сумму при получении.</p>
         </div>
       </div>
-      ${combo ? `<section class="combo-offer"><div><p class="eyebrow">Выгоднее вместе</p><h2>Штроборез + пылесос</h2><p>От ${fmt(dayPrice(combo, 7))} ₽/сутки · общий залог 3 000 ₽</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div><a class="btn btn--primary" href="${pageUrl(combo.id)}">Посмотреть комбо →</a></section>` : ''}
+      ${combo ? `<section class="combo-offer" id="combo"><div><p class="eyebrow">Дополнительно к штроборезу</p><h2>Взять вместе с пылесосом</h2><p>Штроборез ЗУБР + строительный пылесос Vactool B12M20.</p><p>Цена за весь комплект: <b>1–2 суток — ${fmt(dayPrice(combo, 1))} ₽/сутки; 3–6 суток — ${fmt(dayPrice(combo, 3))} ₽/сутки; от 7 суток — ${fmt(dayPrice(combo, 7))} ₽/сутки.</b></p><p>Общий возвратный залог — 3 000 ₽. Два диска — 1 400 ₽ дополнительно, остаются у вас.</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div>${t.id === combo.parent ? `<button class="btn btn--primary" data-book="${combo.id}">Взять с пылесосом</button>` : `<a class="btn btn--primary" href="${pageUrl(combo.id)}">Выбрать на странице штробореза →</a>`}</section>` : ''}
       ${t.components ? `<section class="combo-offer"><div><h2>Экономия с комбо</h2><p>На каждые сутки аренды: ${[1, 3, 7].map(d => fmt(savings(t, d)) + ' ₽').join(' / ')} при сроке 1–2 / 3–6 / от 7 суток.</p><p>Диски оплачиваются отдельно: 1 400 ₽ за два диска.</p></div></section>` : ''}
       <div class="product-details-grid">
         <section><h2>Характеристики</h2><table class="specs"><tbody>${Object.entries(t.specs).map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('')}</tbody></table>
@@ -260,6 +263,15 @@
   function addToCart(id, silent) {
     const item = state.cart.find(i => i.id === id);
     if (item) { if (!silent) toast('Уже в списке аренды'); return; }
+    // Выбор комплекта заменяет по одной ранее выбранной отдельной позиции.
+    const components = toolById[id].components;
+    if (components) {
+      components.forEach(componentId => {
+        const separate = state.cart.find(i => i.id === componentId);
+        if (separate) separate.qty -= 1;
+      });
+      state.cart = state.cart.filter(i => i.qty > 0);
+    }
     state.cart.push({ id, qty: 1 });
     saveCart();
     renderGrid();

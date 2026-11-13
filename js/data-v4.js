@@ -60,7 +60,7 @@ window.TOOLS = [
     tasks: ['electric', 'walls', 'demolition'], short: 'Совместим со штроборезом ЗУБР ЗШ-П45-2100 ПВТК. Можно арендовать отдельно или в комбо.',
     specs: { 'Мощность': '1 200 Вт', 'Совместимость': 'ЗУБР ЗШ-П45-2100 ПВТК' },
     kit: [], combo: 'zubr-vactool-combo' },
-  { id: 'zubr-vactool-combo', page: true, cat: 'cutting', name: 'Комбо: штроборез ЗУБР + пылесос Vactool', brand: 'ЗУБР + Vactool',
+  { id: 'zubr-vactool-combo', offerOnly: true, parent: 'zubr-zsh-p45', cat: 'cutting', name: 'Комбо: штроборез ЗУБР + пылесос Vactool', brand: 'ЗУБР + Vactool',
     price: 1600, rates: { 3: 1300, 7: 1100 }, deposit: 3000, stock: null, featured: true,
     image: 'img/zubr-zsh-p45.webp', images: ['img/zubr-zsh-p45.webp', 'img/zubr-zsh-p45-case.webp'],
     components: ['zubr-zsh-p45', 'vactool-b12m20'], tasks: ['electric'],
