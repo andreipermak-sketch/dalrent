@@ -43,6 +43,23 @@ window.TASKS = [
 ];
 
 window.TOOLS = [
+  { id: 'zubr-zsh30', page: true, cat: 'cutting', name: 'Штроборез ЗУБР МАСТЕР ЗШ-30-1200', brand: 'ЗУБР',
+    price: 800, rates: { 3: 700, 7: 600 }, deposit: 1800, stock: null, featured: true,
+    image: 'img/zubr-zsh30-01.webp',
+    images: ['img/zubr-zsh30-01.webp', 'img/zubr-zsh30-02.webp', 'img/zubr-zsh30-03.webp'],
+    imageAlts: ['ЗУБР МАСТЕР ЗШ-30-1200 — общий вид', 'ЗУБР МАСТЕР ЗШ-30-1200 — вид сзади', 'ЗУБР МАСТЕР ЗШ-30-1200 — крупный план'],
+    tasks: ['electric'], short: 'Компактный штроборез для канавок под проводку. Вес — 4,6 кг, диски — 125 мм.',
+    specs: { 'Мощность': '1 200 Вт', 'Диаметр диска': '125 мм', 'Глубина штробления': 'до 30–35 мм', 'Ширина штробы': '3–30 мм', 'Вес': '4,6 кг' },
+    kit: ['Штроборез', 'Два алмазных диска 125 мм — оплачиваются отдельно и остаются у клиента'],
+    consumables: { name: 'Диски 125 мм', qty: 2, unitPrice: 500 },
+    related: 'vactool-b12m20', combo: 'zubr-zsh30-vactool-combo' },
+  { id: 'zubr-zsh30-vactool-combo', offerOnly: true, parent: 'zubr-zsh30', cat: 'cutting',
+    name: 'Комплект: штроборез ЗУБР МАСТЕР ЗШ-30-1200 + пылесос Vactool', brand: 'ЗУБР + Vactool',
+    price: 1400, rates: { 3: 1400, 7: 1400 }, deposit: 1800, stock: null,
+    image: 'img/zubr-zsh30-01.webp', components: ['zubr-zsh30', 'vactool-b12m20'], tasks: ['electric'],
+    short: 'Компактный штроборез ЗУБР МАСТЕР ЗШ-30-1200 с пылесосом Vactool B12M20.',
+    specs: {}, kit: ['Штроборез ЗУБР МАСТЕР', 'Пылесос Vactool B12M20', 'Два алмазных диска 125 мм — оплачиваются отдельно и остаются у клиента'],
+    consumables: { name: 'Диски 125 мм', qty: 2, unitPrice: 500 } },
   { id: 'zubr-zsh-p45', page: true, cat: 'cutting', name: 'Штроборез ЗУБР ПРОФЕССИОНАЛ ЗШ-П45-2100 ПВТК', brand: 'ЗУБР',
     price: 1000, rates: { 3: 850, 7: 700 }, deposit: 3000, stock: null, featured: true,
     image: 'img/zubr-zsh-p45.webp',

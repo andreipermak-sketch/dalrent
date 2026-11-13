@@ -208,6 +208,7 @@
     document.title = t.name + ' — аренда во Владивостоке | DALRENT';
     document.querySelector('meta[name="description"]').content = t.short + ' Аренда от ' + dayPrice(t, 7) + ' ₽/сутки. Залог ' + t.deposit + ' ₽.';
     const combo = t.combo ? toolById[t.combo] : null;
+    const consumablesText = tool => tool.consumables ? `${tool.consumables.qty} × ${fmt(tool.consumables.unitPrice)} ₽ = ${fmt(tool.consumables.qty * tool.consumables.unitPrice)} ₽` : '';
     const savings = (tool, days) => tool.components.reduce((sum, key) => sum + dayPrice(toolById[key], days), 0) - dayPrice(tool, days);
     root.innerHTML = `
       <div class="product-detail">
@@ -227,12 +228,12 @@
           <p class="deposit-note">Тариф применяется ко всему сроку аренды.</p>
           <div class="product-deposit"><span>Возвратный залог</span><b>${fmt(t.deposit)} ₽</b></div>
           ${t.components ? '<p class="deposit-note">Залог за весь комплект — 3 000 ₽. Дополнительного залога за пылесос нет.</p>' : ''}
-          ${t.consumables ? '<div class="consumables-note"><b>Диски: 2 × 700 ₽ = 1 400 ₽</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>' : ''}
+          ${t.consumables ? `<div class="consumables-note"><b>Диски: ${consumablesText(t)}</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>` : ''}
           <div class="product__actions"><button class="btn btn--primary btn--lg" data-book="${t.id}">Рассчитать аренду</button><button class="btn btn--ghost" data-add="${t.id}">В список аренды</button></div>
           <p class="deposit-note">Выберите даты — покажем аренду, расходники и всю сумму при получении.</p>
         </div>
       </div>
-      ${combo ? `<section class="combo-offer" id="combo"><div><p class="eyebrow">Дополнительно к штроборезу</p><h2>Взять вместе с пылесосом</h2><p>Штроборез ЗУБР + строительный пылесос Vactool B12M20.</p><p>Цена за весь комплект: <b>1–2 суток — ${fmt(dayPrice(combo, 1))} ₽/сутки; 3–6 суток — ${fmt(dayPrice(combo, 3))} ₽/сутки; от 7 суток — ${fmt(dayPrice(combo, 7))} ₽/сутки.</b></p><p>Общий возвратный залог — 3 000 ₽. Два диска — 1 400 ₽ дополнительно, остаются у вас.</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div>${t.id === combo.parent ? `<button class="btn btn--primary" data-book="${combo.id}">Взять с пылесосом</button>` : `<a class="btn btn--primary" href="${pageUrl(combo.id)}">Выбрать на странице штробореза →</a>`}</section>` : ''}
+      ${combo ? `<section class="combo-offer" id="combo"><div><p class="eyebrow">Дополнительно к штроборезу</p><h2>Взять вместе с пылесосом</h2><p>${esc(toolById[combo.parent].name)} + строительный пылесос Vactool B12M20.</p><p>Цена за весь комплект: <b>1–2 суток — ${fmt(dayPrice(combo, 1))} ₽/сутки; 3–6 суток — ${fmt(dayPrice(combo, 3))} ₽/сутки; от 7 суток — ${fmt(dayPrice(combo, 7))} ₽/сутки.</b></p><p>Общий возвратный залог — ${fmt(combo.deposit)} ₽. ${combo.consumables ? `Диски: ${consumablesText(combo)} дополнительно, остаются у вас.` : ''}</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div>${t.id === combo.parent ? `<button class="btn btn--primary" data-book="${combo.id}">Взять с пылесосом</button>` : `<a class="btn btn--primary" href="${pageUrl(combo.id)}">Выбрать на странице штробореза →</a>`}</section>` : ''}
       ${t.components ? `<section class="combo-offer"><div><h2>Экономия с комбо</h2><p>На каждые сутки аренды: ${[1, 3, 7].map(d => fmt(savings(t, d)) + ' ₽').join(' / ')} при сроке 1–2 / 3–6 / от 7 суток.</p><p>Диски оплачиваются отдельно: 1 400 ₽ за два диска.</p></div></section>` : ''}
       <div class="product-details-grid">
         <section><h2>Характеристики</h2><table class="specs"><tbody>${Object.entries(t.specs).map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('')}</tbody></table>
@@ -354,7 +355,7 @@
           <div><span>Аренда</span><span>${fmt(c.base)} ₽</span></div>
           ${c.discount ? `<div class="discount"><span>Скидка за срок аренды</span><span>−${fmt(c.discount)} ₽</span></div>` : `<div class="muted"><span>Тариф за весь срок — по выбранному инструменту</span></div>`}
           ${b.delivery !== 'pickup' ? `<div><span>Доставка</span><span>${c.delivery ? 'от ' + fmt(c.delivery) + ' ₽' : 'Бесплатно'}</span></div>` : ''}
-          ${c.consumables ? `<div><span>Диски · ${c.consumableItems.reduce((sum, i) => sum + i.quantity, 0)} шт. × 700 ₽</span><span>${fmt(c.consumables)} ₽</span></div><p class="deposit-note">Диски оплачиваются при получении и остаются у вас.</p>` : ''}
+          ${c.consumables ? `${c.consumableItems.map(i => `<div><span>${esc(i.name)} · ${i.quantity} шт. × ${fmt(i.unitPrice)} ₽</span><span>${fmt(i.total)} ₽</span></div>`).join('')}<p class="deposit-note">Диски оплачиваются при получении и остаются у вас.</p>` : ''}
           <div><span>Аренда и расходы</span><span>${c.delivery ? 'от ' : ''}${fmt(c.total)} ₽</span></div>
           <div class="muted"><span>Возвратный залог</span><span>${fmt(c.deposit)} ₽</span></div>
           <div class="total"><span>При получении</span><span>${c.delivery ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
