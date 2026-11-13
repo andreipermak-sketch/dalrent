@@ -324,3 +324,5 @@ body.no-scroll { overflow: hidden; }
   .form__row { grid-template-columns: 1fr; }
   .contacts__cta { padding: 28px; }
 }
+
+[data-hours]{white-space:pre-line;line-height:1.65;display:block}

@@ -361,3 +361,5 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow-dark); o
 .summary p { margin: 4px 0; }
 @media(max-width:860px) { .product-detail, .product-details-grid { grid-template-columns: 1fr; gap: 28px; } .combo-offer { flex-direction: column; align-items: flex-start; } }
 @media(max-width:600px) { .product-page { padding-top: 24px; } .price-table div { padding: 10px 5px; } .price-table b { font-size: 18px; } .combo-offer { padding: 24px; } .seg--delivery { grid-template-columns: 1fr; } .summary .total { font-size: 18px; } }
+
+[data-hours]{white-space:pre-line;line-height:1.65;display:block}
