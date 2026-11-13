@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -10,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style-v4.css?v=4">
 </head>
 <body>
 
@@ -45,7 +44,7 @@
       <div class="hero__content">
         <p class="eyebrow">Прокат профессионального инструмента · <span data-city></span></p>
         <h1>Возьмите <span class="accent">профессиональный</span> инструмент на&nbsp;время ремонта</h1>
-        <p class="hero__lead">Makita, Bosch, Hilti, Kärcher — исправный, чистый и готовый к работе. Цена за сутки видна сразу, бронь онлайн за минуту, доставка по городу.</p>
+        <p class="hero__lead">Makita, Bosch, Hilti, Kärcher — исправный, чистый и готовый к работе. Цена за сутки видна сразу, расчёт аренды онлайн, доставка по городу.</p>
         <form class="search" id="heroSearch" role="search">
           <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <input type="search" id="heroQuery" placeholder="Например: перфоратор, плиткорез, нивелир" aria-label="Поиск инструмента">
@@ -59,7 +58,7 @@
       <div class="hero__stats">
         <div class="stat"><b data-count-tools></b><span>единиц техники</span></div>
         <div class="stat"><b>от 250 ₽</b><span>в сутки</span></div>
-        <div class="stat"><b>−25%</b><span>при аренде от 7 дней</span></div>
+        <div class="stat"><b>−25%</b><span>на отдельные инструменты от 7 дней</span></div>
         <div class="stat"><b>2 часа</b><span>доставка по городу</span></div>
       </div>
     </div>
@@ -116,9 +115,9 @@
       </div>
       <ol class="steps">
         <li><b>01</b><h3>Выберите инструмент</h3><p>Найдите в каталоге или подберите по виду работ. Цена за сутки указана сразу.</p></li>
-        <li><b>02</b><h3>Забронируйте онлайн</h3><p>Укажите даты и телефон. Менеджер перезвонит за 15 минут и подтвердит бронь.</p></li>
+        <li><b>02</b><h3>Рассчитайте аренду</h3><p>Выберите даты и способ получения. Наличие инструмента и время выдачи подтверждает менеджер.</p></li>
         <li><b>03</b><h3>Заберите или получите</h3><p>Самовывоз из пункта проката или доставка по городу. Покажем, как работать.</p></li>
-        <li><b>04</b><h3>Верните после работы</h3><p>Вернёте вовремя и в рабочем состоянии — залог сразу возвращаем.</p></li>
+        <li><b>04</b><h3>Верните после работы</h3><p>Верните инструмент в том же состоянии и комплектации, в которых получили.</p></li>
       </ol>
     </div>
   </section>
@@ -132,12 +131,12 @@
         <div class="term">
           <div class="term__icon">₽</div>
           <h3>Цена и скидки</h3>
-          <p>Сутки — 24 часа с момента выдачи. От 3 дней — скидка 10%, от 7 дней — 25%.</p>
+          <p>Сутки — 24 часа с момента выдачи. Тарифы на длительную аренду указаны в карточке каждого инструмента.</p>
         </div>
         <div class="term">
           <div class="term__icon">⎙</div>
           <h3>Документы</h3>
-          <p>Паспорт гражданина РФ. Для юрлиц — договор и работа без залога.</p>
+          <p>Оформляем договор проката инструмента и оборудования. Для оформления понадобится паспорт.</p>
         </div>
         <div class="term">
           <div class="term__icon">◈</div>
@@ -147,7 +146,7 @@
         <div class="term">
           <div class="term__icon">➜</div>
           <h3>Доставка</h3>
-          <p>По городу — <span data-delivery></span> ₽ в одну сторону. Самовывоз — бесплатно.</p>
+          <p>Доставка по городу — бесплатно. За город — от 450 ₽. Самовывоз — бесплатно.</p>
         </div>
       </div>
     </div>
@@ -159,7 +158,7 @@
         <h2>Частые вопросы</h2>
       </div>
       <div class="faq">
-        <details><summary>Нужно ли покупать расходники?</summary><p>Базовая оснастка (буры, диски, пилки) уже в комплекте — смотрите раздел «Комплектация» в карточке. Дополнительные расходники можно купить у нас на месте.</p></details>
+        <details><summary>Нужно ли покупать расходники?</summary><p>Состав комплекта и стоимость расходников указаны в карточке. Для штробореза ЗУБР и комбо два диска оплачиваются при получении: по 700 ₽ за штуку. После аренды диски остаются у клиента.</p></details>
         <details><summary>Что если инструмент сломается во время работы?</summary><p>Если поломка произошла не по вашей вине — бесплатно заменим инструмент. Звоните сразу, как заметили проблему.</p></details>
         <details><summary>Можно продлить аренду?</summary><p>Да, позвоните или напишите нам до окончания срока. Если инструмент не забронирован другим клиентом, продлим по той же цене со скидкой за общий срок.</p></details>
         <details><summary>Вы работаете с организациями?</summary><p>Да, заключаем договор, работаем по безналичному расчёту с НДС и без залога для постоянных клиентов.</p></details>
@@ -218,9 +217,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/data.js?v=3"></script>
-<script src="js/app.js?v=3"></script>
+<script src="js/data-v4.js?v=4"></script>
+<script src="js/pricing-v4.js?v=4"></script>
+<script src="js/app-v4.js?v=4"></script>
 </body>
 </html>
-
-</body></html>

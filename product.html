@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Аренда инструмента — DALRENT</title>
+  <meta name="description" content="Аренда перфораторов, отбойников, плиткорезов, нивелиров и строительного оборудования. Цены за сутки, онлайн-бронирование, доставка по городу.">
+  <link rel="icon" href="img/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style-v4.css?v=4">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="index.html#top" class="logo" aria-label="DALRENT — на главную">
+      <img src="img/icon.svg" alt="" width="40" height="40">
+      <span class="logo__text">DAL<b>RENT</b></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html#catalog">Каталог</a>
+      <a href="index.html#how">Как арендовать</a>
+      <a href="index.html#terms">Условия</a>
+      <a href="index.html#faq">Вопросы</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <a class="header__phone" data-phone></a>
+    <button class="cart-btn" id="cartOpen" aria-label="Список аренды">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 7h18l-1.5 12.5a2 2 0 0 1-2 1.5h-11a2 2 0 0 1-2-1.5L3 7Zm5 0V6a4 4 0 0 1 8 0v1" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span class="cart-btn__label">Аренда</span>
+      <span class="cart-btn__count" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top" class="section product-page"><div class="container">
+  <a class="back-link" href="index.html#catalog">← Каталог инструмента</a>
+  <div id="productPage"></div>
+  <noscript>Для расчёта стоимости и просмотра характеристик включите JavaScript.</noscript>
+</div></main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <a href="index.html#top" class="logo logo--sm"><img src="img/icon.svg" alt="" width="28" height="28"><span class="logo__text">DAL<b>RENT</b></span></a>
+    <p>© <span id="year"></span> DALRENT — прокат профессионального инструмента</p>
+  </div>
+</footer>
+
+<!-- Карточка инструмента -->
+<div class="modal" id="productModal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <button class="modal__close" data-close aria-label="Закрыть">×</button>
+    <div id="productBody"></div>
+  </div>
+</div>
+
+<!-- Список аренды / бронирование -->
+<div class="drawer" id="cartDrawer" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="drawer__head">
+      <h2 id="cartTitle">Бронирование</h2>
+      <button class="modal__close" data-close aria-label="Закрыть">×</button>
+    </div>
+    <div class="drawer__body" id="cartBody"></div>
+  </aside>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data-v4.js?v=4"></script>
+<script src="js/pricing-v4.js?v=4"></script>
+<script src="js/app-v4.js?v=4"></script>
+</body>
+</html>
