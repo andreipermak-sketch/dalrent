@@ -210,7 +210,7 @@
       <div class="product-detail">
         <div class="gallery">
           ${t.image ? `<a href="${esc(t.image)}" target="_blank" rel="noopener" aria-label="Открыть главное фото в полном размере" id="galleryLink"><img id="galleryMain" class="gallery__main" src="${esc(t.image)}" alt="${esc(t.name)}" width="560" height="504"></a>
-          <div class="gallery__thumbs">${t.images.map((src, i) => `<button type="button" class="gallery__thumb" data-gallery-image="${esc(src)}" aria-label="Фото ${i + 1}" aria-pressed="${i === 0}"><img src="${esc(src)}" alt="${['Общий вид', 'Дополнительный вид', 'Инструмент с кейсом'][i]}" width="90" height="80"></button>`).join('')}</div><p class="deposit-note">Нажмите на фото, чтобы открыть его в полном размере.</p>` : `<div class="gallery__placeholder">${iconFor(t)}<p>Vactool B12M20</p></div>`}
+          <div class="gallery__thumbs">${t.images.map((src, i) => `<button type="button" class="gallery__thumb" data-gallery-image="${esc(src)}" aria-label="Фото ${i + 1}" aria-pressed="${i === 0}"><img src="${esc(src)}" alt="${esc((t.imageAlts || ['Общий вид', 'Дополнительный вид', 'Инструмент с кейсом'])[i] || t.name)}" width="90" height="80"></button>`).join('')}</div><p class="deposit-note">Нажмите на фото, чтобы открыть его в полном размере.</p>` : `<div class="gallery__placeholder">${iconFor(t)}<p>Vactool B12M20</p></div>`}
           ${t.components ? '<p class="deposit-note">В комбо также входит пылесос Vactool B12M20.</p>' : ''}
         </div>
         <div class="product-detail__info">
