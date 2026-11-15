@@ -220,7 +220,7 @@
         <div class="product-detail__info">
           <p class="eyebrow">${t.components ? 'Выгоднее комплектом' : 'Прокат инструмента · Владивосток'}</p>
           <h1>${esc(t.name)}</h1>
-          <p class="product-detail__lead">${esc(t.short)}</p>
+          ${t.technicalOnly ? '' : `<p class="product-detail__lead">${esc(t.short)}</p>`}
           ${availability(t)}
           <div class="price-table">
             ${[[1, '1–2 суток'], [3, '3–6 суток'], [7, 'От 7 суток']].map(([days, label]) => `<div><span>${label}</span><b>${fmt(dayPrice(t, days))} ₽</b><span>за сутки</span></div>`).join('')}

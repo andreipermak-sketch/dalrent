@@ -97,10 +97,10 @@ window.TOOLS = [
     short: 'Мощный перфоратор SDS-max для бурения и долбления бетона.',
     specs: { 'Патрон': 'SDS-max', 'Мощность': '1150 Вт', 'Энергия удара': '8,8 Дж', 'Бурение бетона': 'до 40 мм', 'Вес': '6,8 кг' },
     kit: ['Кейс', 'Пика', 'Зубило'] },
-  { id: 'makita-hm1307', cat: 'perforators', name: 'Отбойный молоток Makita HM1307C', brand: 'Makita', price: 1500, deposit: 15000, stock: 2, popular: true,
+  { id: 'makita-hm1307', page: true, technicalOnly: true, image: 'img/makita-hm1307c-1.jpg', images: ['img/makita-hm1307c-1.jpg', 'img/makita-hm1307c-2.jpg'], cat: 'perforators', name: 'Отбойный молоток Makita HM1307C', brand: 'Makita', price: 1500, deposit: 15000, stock: 2, popular: true,
     tasks: ['demolition'],
-    short: 'Для демонтажа стен, стяжки, плитки и бетонных конструкций.',
-    specs: { 'Патрон': 'HEX 30 мм', 'Мощность': '1510 Вт', 'Энергия удара': '25,5 Дж', 'Вес': '15,3 кг' },
+    short: '1510 Вт · HEX 30 мм · 25,5 Дж · 15,3 кг',
+    specs: { 'Мощность': '1510 Вт', 'Энергия удара': '25,5 Дж', 'Патрон': 'HEX, 30 мм', 'Частота ударов': '730–1450 уд/мин', 'Регулировка частоты ударов': 'Есть', 'Плавный пуск': 'Есть', 'Вес': '15,3 кг', 'Длина кабеля': '5 м' },
     kit: ['Пика', 'Зубило', 'Тележка'] },
 
   { id: 'makita-ddf485', cat: 'drills', name: 'Аккумуляторный шуруповёрт Makita DDF485', brand: 'Makita', price: 450, deposit: 4000, stock: 8,
