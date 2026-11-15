@@ -176,7 +176,7 @@
         <div class="product__info">
           ${availability(t)}
           <h2 id="pmTitle">${esc(t.name)}</h2>
-          <p>${esc(t.short)}</p>
+          ${t.technicalOnly ? '' : `<p>${esc(t.short)}</p>`}
           <div class="price-table">
             <div><span>1–2 суток</span><b>${fmt(t.price)} ₽</b></div>
             <div><span>от 3 суток</span><b>${fmt(dayPrice(t, 3))} ₽</b></div>
