@@ -185,7 +185,6 @@
           <p class="deposit-note">Залог: <b>${fmt(t.deposit)} ₽</b> — возвращается при сдаче инструмента</p>
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
-          ${t.kit.length ? `<h4>Комплектация</h4><ul class="kit">${t.kit.map(k => `<li>${esc(k)}</li>`).join('')}</ul>` : ''}
           ${tasks.length ? `<h4>Подходит для</h4><p style="margin:0;font-size:14px">${esc(tasks.join(' · '))}</p>` : ''}
           <div class="product__actions">
             <button class="btn btn--primary btn--lg" data-book="${t.id}">Забронировать</button>
@@ -237,7 +236,7 @@
       ${t.components ? `<section class="combo-offer"><div><h2>Экономия с комбо</h2><p>На каждые сутки аренды: ${[1, 3, 7].map(d => fmt(savings(t, d)) + ' ₽').join(' / ')} при сроке 1–2 / 3–6 / от 7 суток.</p><p>Диски оплачиваются отдельно: 1 400 ₽ за два диска.</p></div></section>` : ''}
       <div class="product-details-grid">
         <section><h2>Характеристики</h2><table class="specs"><tbody>${Object.entries(t.specs).map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('')}</tbody></table>
-        ${t.kit.length ? `<h2>Комплектация</h2><ul class="kit">${t.kit.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</section>
+        </section>
         <section><h2>Получение и возврат</h2><p>Самовывоз или доставка. Доставка по городу — бесплатно, за город — от 450 ₽.</p><p>При получении оформляем договор проката инструмента и оборудования.</p><p>Верните инструмент в том же состоянии и комплектации, в которых он был выдан.</p>
         ${t.related ? `<a class="related-link" href="${pageUrl(t.related)}">Добавить совместимый пылесос Vactool B12M20 →</a>` : ''}
         ${t.components ? t.components.map(key => `<p><a class="related-link" href="${pageUrl(key)}">${esc(toolById[key].name)} →</a></p>`).join('') : ''}

@@ -185,7 +185,6 @@
           <p class="deposit-note">Залог: <b>${fmt(t.deposit)} ₽</b> — возвращается при сдаче инструмента</p>
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
-          ${t.kit.length ? `<h4>Комплектация</h4><ul class="kit">${t.kit.map(k => `<li>${esc(k)}</li>`).join('')}</ul>` : ''}
           ${tasks.length ? `<h4>Подходит для</h4><p style="margin:0;font-size:14px">${esc(tasks.join(' · '))}</p>` : ''}
           <div class="product__actions">
             <button class="btn btn--primary btn--lg" data-book="${t.id}">Забронировать</button>
