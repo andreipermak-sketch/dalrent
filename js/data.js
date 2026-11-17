@@ -4,9 +4,9 @@
 
 window.SITE_CONFIG = {
   city: 'Владивосток',
-  phone: '+7 984 196-84-25',
-  phoneRaw: '+79841968425',
-  email: 'Andreipermiakov01@mail.ru',
+  phone: '+7 924 242-52-02',
+  phoneRaw: '+79242425202',
+  email: 'DalRent@yandex.ru',
   address: 'г. Владивосток, ул. Невельского, 19, первый этаж',
   hours: 'Понедельник — суббота\n09:00–19:00\n\nВоскресенье\n10:00–17:00',
   deliveryPrice: 800,
