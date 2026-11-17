@@ -166,7 +166,7 @@ window.TOOLS = [
     short: 'Три плоскости 360° — разметка стен, полов, потолков.',
     specs: {"Плоскости": "3 × 360°", "Дальность без приёмника": "до 30 м", "Дальность с приёмником": "до 120 м", "Точность": "±0,2 мм/м", "Самовыравнивание": "±4°", "Цвет луча": "Красный", "Защита": "IP54"},
     kit: ['Штатив', 'Мишень', 'Кейс'] },
-  { id: 'bosch-glm50', cat: 'measure', name: 'Лазерный дальномер Bosch GLM 50', brand: 'Bosch', price: 250, deposit: 3000, stock: 5,
+  { id: 'bosch-glm50', image: 'img/catalog/bosch-glm50-vi.jpg', images: ['img/catalog/bosch-glm50-vi.jpg'], cat: 'measure', name: 'Лазерный дальномер Bosch GLM 50', brand: 'Bosch', price: 250, deposit: 3000, stock: 5,
     tasks: ['walls', 'floor'],
     short: 'Замер помещений, площади и объёма за секунды.',
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
@@ -243,6 +243,7 @@ window.CATEGORIES.push({id:"lighting",name:"Освещение и удлинит
 window.TOOLS.push(...[
   {
     "id": "makita-dhr202",
+    "image": "img/catalog/makita-dhr202-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "perforators",
@@ -260,11 +261,12 @@ window.TOOLS.push(...[
       "Модель": "DHR202Z"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-dhr202-vi.jpg"],
     "sourceRow": 1
   },
   {
     "id": "makita-hm0870",
+    "image": "img/catalog/makita-hm0870-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "perforators",
@@ -282,11 +284,12 @@ window.TOOLS.push(...[
       "Модель": "HM0870C"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-hm0870-vi.jpg"],
     "sourceRow": 3
   },
   {
     "id": "karcher-wd3p",
+    "image": "img/catalog/karcher-wd3p-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cleaning",
@@ -305,11 +308,12 @@ window.TOOLS.push(...[
       "Объём бака": "17 л"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/karcher-wd3p-vi.jpg"],
     "sourceRow": 4
   },
   {
     "id": "ballu-bhpm24",
+    "image": "img/catalog/ballu-bhpm24-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "climate",
@@ -329,11 +333,12 @@ window.TOOLS.push(...[
       "Площадь обогрева": "до 250 м²"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ballu-bhpm24-vi.jpg"],
     "sourceRow": 6
   },
   {
     "id": "makita-sg1251",
+    "image": "img/catalog/makita-sg1251-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -351,11 +356,12 @@ window.TOOLS.push(...[
       "Модель": "SG-1251J"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-sg1251-vi.jpg"],
     "sourceRow": 7
   },
   {
     "id": "makita-dhp484",
+    "image": "img/catalog/makita-dhp484-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -375,11 +381,12 @@ window.TOOLS.push(...[
       "Обороты": "до 2000 об/мин"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-dhp484-vi.jpg"],
     "sourceRow": 8
   },
   {
     "id": "makita-td110",
+    "image": "img/catalog/makita-td110-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -399,11 +406,12 @@ window.TOOLS.push(...[
       "Крутящий момент": "110 Н·м"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-td110-vi.jpg"],
     "sourceRow": 9
   },
   {
     "id": "messer-ecf350",
+    "image": "img/catalog/messer-ecf350-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -421,11 +429,12 @@ window.TOOLS.push(...[
       "Модель": "ECF350 10-44-351"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/messer-ecf350-vi.jpg"],
     "sourceRow": 10
   },
   {
     "id": "messer-6831",
+    "image": "img/catalog/messer-6831-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -445,11 +454,12 @@ window.TOOLS.push(...[
       "Диаметр диска": "300 мм"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/messer-6831-vi.jpg"],
     "sourceRow": 11
   },
   {
     "id": "makita-ga5030r",
+    "image": "img/catalog/makita-ga5030r-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -470,11 +480,12 @@ window.TOOLS.push(...[
       "Обороты": "11000 об/мин"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-ga5030r-vi.jpg"],
     "sourceRow": 12
   },
   {
     "id": "gigant-80080",
+    "image": "img/catalog/gigant-80080-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "lighting",
@@ -495,11 +506,12 @@ window.TOOLS.push(...[
       "Катушка": "Металлическая"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/gigant-80080-vi.jpg"],
     "sourceRow": 14
   },
   {
     "id": "gigant-80079",
+    "image": "img/catalog/gigant-80079-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "lighting",
@@ -520,11 +532,12 @@ window.TOOLS.push(...[
       "Катушка": "Металлическая"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/gigant-80079-vi.jpg"],
     "sourceRow": 15
   },
   {
     "id": "ken-6110b",
+    "image": "img/catalog/ken-6110b-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -542,11 +555,12 @@ window.TOOLS.push(...[
       "Модель": "6110B 115.413.8758"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ken-6110b-vi.jpg"],
     "sourceRow": 16
   },
   {
     "id": "ballu-bdi80l",
+    "image": "img/catalog/ballu-bdi80l-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "climate",
@@ -565,11 +579,12 @@ window.TOOLS.push(...[
       "Площадь помещения": "до 115 м²"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ballu-bdi80l-vi.jpg"],
     "sourceRow": 17
   },
   {
     "id": "lt-l12360a",
+    "image": "img/catalog/lt-l12360a-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "measure",
@@ -588,11 +603,12 @@ window.TOOLS.push(...[
       "Угол развёртки": "360°"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/lt-l12360a-vi.jpg"],
     "sourceRow": 18
   },
   {
     "id": "gigant-mig200s",
+    "image": "img/catalog/gigant-mig200s-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "power",
@@ -614,11 +630,12 @@ window.TOOLS.push(...[
       "Продолжительность включения": "40%"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/gigant-mig200s-vi.jpg"],
     "sourceRow": 19
   },
   {
     "id": "gigant-gtms100",
+    "image": "img/catalog/gigant-gtms100-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "lighting",
@@ -636,11 +653,12 @@ window.TOOLS.push(...[
       "Модель": "GTMS-100"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/gigant-gtms100-vi.jpg"],
     "sourceRow": 20
   },
   {
     "id": "inforce-051317",
+    "image": "img/catalog/inforce-051317-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -659,11 +677,12 @@ window.TOOLS.push(...[
       "Длина реза": "до 1000 мм"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/inforce-051317-vi.jpg"],
     "sourceRow": 21
   },
   {
     "id": "inforce-bcx100l",
+    "image": "img/catalog/inforce-bcx100l-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "construction",
@@ -684,11 +703,12 @@ window.TOOLS.push(...[
       "Производительность": "510 л/мин"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/inforce-bcx100l-vi.jpg"],
     "sourceRow": 22
   },
   {
     "id": "toua-gsn40e",
+    "image": "img/catalog/toua-gsn40e-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -706,11 +726,12 @@ window.TOOLS.push(...[
       "Модель": "GSN40E"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/toua-gsn40e-vi.jpg"],
     "sourceRow": 23
   },
   {
     "id": "norsu-rs50l",
+    "image": "img/catalog/norsu-rs50l-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "construction",
@@ -729,11 +750,12 @@ window.TOOLS.push(...[
       "Тип": "Прямоходная"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/norsu-rs50l-vi.jpg"],
     "sourceRow": 24
   },
   {
     "id": "makita-dub184",
+    "image": "img/catalog/makita-dub184-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "garden",
@@ -752,11 +774,12 @@ window.TOOLS.push(...[
       "Напряжение": "18 В"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-dub184-vi.jpg"],
     "sourceRow": 25
   },
   {
     "id": "verton-bw480",
+    "image": "img/catalog/verton-bw480-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "garden",
@@ -774,11 +797,12 @@ window.TOOLS.push(...[
       "Модель": "BW-4/80"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/verton-bw480-vi.jpg"],
     "sourceRow": 26
   },
   {
     "id": "makita-dtw700",
+    "image": "img/catalog/makita-dtw700-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -797,11 +821,12 @@ window.TOOLS.push(...[
       "Напряжение": "18 В"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-dtw700-vi.jpg"],
     "sourceRow": 27
   },
   {
     "id": "bosch-gol32d",
+    "image": "img/catalog/bosch-gol32d-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "measure",
@@ -819,11 +844,12 @@ window.TOOLS.push(...[
       "Модель": "GOL 32 D Professional"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/bosch-gol32d-vi.jpg"],
     "sourceRow": 28
   },
   {
     "id": "condtrol-wheelpro",
+    "image": "img/catalog/condtrol-wheelpro-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "measure",
@@ -842,11 +868,12 @@ window.TOOLS.push(...[
       "Тип": "Механическое"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/condtrol-wheelpro-vi.jpg"],
     "sourceRow": 29
   },
   {
     "id": "makita-ut1400",
+    "image": "img/catalog/makita-ut1400-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "drills",
@@ -864,11 +891,12 @@ window.TOOLS.push(...[
       "Модель": "UT1400"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-ut1400-vi.jpg"],
     "sourceRow": 30
   },
   {
     "id": "giks-pt600h",
+    "image": "img/catalog/giks-pt600h-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "construction",
@@ -886,11 +914,12 @@ window.TOOLS.push(...[
       "Модель": "PT600H"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/giks-pt600h-vi.jpg"],
     "sourceRow": 31
   },
   {
     "id": "karcher-hd515",
+    "image": "img/catalog/karcher-hd515-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cleaning",
@@ -908,11 +937,12 @@ window.TOOLS.push(...[
       "Модель": "HD 5/15"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/karcher-hd515-vi.jpg"],
     "sourceRow": 32
   },
   {
     "id": "makita-uc4051",
+    "image": "img/catalog/makita-uc4051-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -930,11 +960,12 @@ window.TOOLS.push(...[
       "Модель": "UC4051A-5M"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-uc4051-vi.jpg"],
     "sourceRow": 33
   },
   {
     "id": "makita-hs7611",
+    "image": "img/catalog/makita-hs7611-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cutting",
@@ -952,11 +983,12 @@ window.TOOLS.push(...[
       "Модель": "HS7611K"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-hs7611-vi.jpg"],
     "sourceRow": 35
   },
   {
     "id": "makita-9237cb",
+    "image": "img/catalog/makita-9237cb-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "grinding",
@@ -974,11 +1006,12 @@ window.TOOLS.push(...[
       "Модель": "9237CB"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-9237cb-vi.jpg"],
     "sourceRow": 36
   },
   {
     "id": "makita-hg6530",
+    "image": "img/catalog/makita-hg6530-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "climate",
@@ -996,11 +1029,12 @@ window.TOOLS.push(...[
       "Модель": "HG6530VK"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/makita-hg6530-vi.jpg"],
     "sourceRow": 37
   },
   {
     "id": "karcher-puzzi81",
+    "image": "img/catalog/karcher-puzzi81-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "cleaning",
@@ -1018,11 +1052,12 @@ window.TOOLS.push(...[
       "Модель": "Puzzi 8/1"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/karcher-puzzi81-vi.jpg"],
     "sourceRow": 38
   },
   {
     "id": "ada-grounddrill2",
+    "image": "img/catalog/ada-grounddrill2-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "garden",
@@ -1040,11 +1075,12 @@ window.TOOLS.push(...[
       "Модель": "Ground Drill-2"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ada-grounddrill2-vi.jpg"],
     "sourceRow": 39
   },
   {
     "id": "ballu-bdi70lp",
+    "image": "img/catalog/ballu-bdi70lp-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "climate",
@@ -1062,11 +1098,12 @@ window.TOOLS.push(...[
       "Модель": "BDI 70LP"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ballu-bdi70lp-vi.jpg"],
     "sourceRow": 40
   },
   {
     "id": "ballu-bdi100l",
+    "image": "img/catalog/ballu-bdi100l-vi.jpg",
     "page": true,
     "technicalOnly": true,
     "cat": "climate",
@@ -1084,12 +1121,13 @@ window.TOOLS.push(...[
       "Модель": "BDI 100L"
     },
     "kit": [],
-    "images": [],
+    "images": ["img/catalog/ballu-bdi100l-vi.jpg"],
     "sourceRow": 41
   }
 ]);
 
-window.TOOLS.push({"id": "karcher-puzzi101", "page": true, "technicalOnly": true, "cat": "cleaning", "name": "Моющий пылесос Kärcher Puzzi 10/1", "brand": "Kärcher", "price": 1200, "priceEstimated": true, "deposit": 0, "depositPending": true, "stock": null, "tasks": [], "short": "", "specs": {"Марка": "Kärcher", "Модель": "Puzzi 10/1"}, "kit": [], "images": [], "sourceRow": 38});
+window.TOOLS.push({"id": "karcher-puzzi101",
+    "image": "img/catalog/karcher-puzzi101-vi.jpg", "page": true, "technicalOnly": true, "cat": "cleaning", "name": "Моющий пылесос Kärcher Puzzi 10/1", "brand": "Kärcher", "price": 1200, "priceEstimated": true, "deposit": 0, "depositPending": true, "stock": null, "tasks": [], "short": "", "specs": {"Марка": "Kärcher", "Модель": "Puzzi 10/1"}, "kit": [], "images": ["img/catalog/karcher-puzzi101-vi.jpg"], "sourceRow": 38});
 window.TOOLS.filter(t => t.sourceRow).forEach(t => {t.tasks = ({"perforators": ["demolition", "drilling"], "drills": ["drilling"], "cutting": ["concrete"], "cleaning": ["walls", "floor"], "climate": ["heat"], "lighting": ["electric"], "measure": ["drilling"], "power": ["electric"], "construction": ["concrete"], "garden": ["garden"], "grinding": ["floor"]})[t.cat] || [];});
 
 // Краткие параметры вместо рекламных описаний.
