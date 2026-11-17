@@ -37,6 +37,10 @@
 
   // ---------- Цены ----------
   const dayPrice = window.DALRENT_PRICING.dayPrice;
+  const tariffRows = tool => window.DALRENT_PRICING.rateBands(tool).map(band => ({
+    ...band,
+    label: band.end === null ? `От ${band.start} суток` : band.start === band.end ? `${band.start} сутки` : `${band.start}–${band.end} суток`
+  }));
   const pageUrl = id => 'product.html?tool=' + encodeURIComponent(toolById[id]?.parent || id) + (toolById[id]?.offerOnly ? '#combo' : '');
   const isProductPage = !!document.querySelector('#productPage');
 
@@ -178,10 +182,8 @@
           ${availability(t)}
           <h2 id="pmTitle">${esc(t.name)}</h2>
           ${t.technicalOnly ? '' : `<p>${esc(t.short)}</p>`}
-          <div class="price-table">
-            <div><span>1–2 суток</span><b>${fmt(t.price)} ₽</b></div>
-            <div><span>от 3 суток</span><b>${fmt(dayPrice(t, 3))} ₽</b></div>
-            <div><span>от 7 суток</span><b>${fmt(dayPrice(t, 7))} ₽</b></div>
+          <div class="price-table" ${tariffRows(t).length === 4 ? 'style="grid-template-columns:repeat(2,minmax(0,1fr))"' : ''}>
+            ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b></div>`).join('')}
           </div>
           <p class="deposit-note">Залог: <b>${depositText(t)}</b>${t.depositPending ? "" : " — возвращается при сдаче инструмента"}</p>
           <h4>Характеристики</h4>
@@ -222,8 +224,8 @@
           <h1>${esc(t.name)}</h1>
           ${t.technicalOnly ? '' : `<p class="product-detail__lead">${esc(t.short)}</p>`}
           ${availability(t)}
-          <div class="price-table">
-            ${[[1, '1–2 суток'], [3, '3–6 суток'], [7, 'От 7 суток']].map(([days, label]) => `<div><span>${label}</span><b>${fmt(dayPrice(t, days))} ₽</b><span>за сутки</span></div>`).join('')}
+          <div class="price-table" ${tariffRows(t).length === 4 ? 'style="grid-template-columns:repeat(2,minmax(0,1fr))"' : ''}>
+            ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b><span>за сутки</span></div>`).join('')}
           </div>
           <p class="deposit-note">${t.priceEstimated ? "Ориентировочные цены аренды. Точную стоимость подтвердит менеджер." : "Тариф применяется ко всему сроку аренды."}</p>
           <div class="product-deposit"><span>Возвратный залог</span><b>${depositText(t)}</b></div>
