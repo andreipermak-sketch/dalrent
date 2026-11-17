@@ -30,6 +30,7 @@
     const key = (catById[tool.cat] || {}).icon || 'bolt';
     return `<svg class="tool-icon" viewBox="0 0 64 64" aria-hidden="true">${ICONS[key]}</svg>`;
   }
+  function depositText(tool) { return tool.depositPending ? "Уточняется" : fmt(tool.deposit) + " ₽"; }
   function media(tool) {
     return tool.image ? `<img src="${esc(tool.image)}" alt="${esc(tool.name)}" loading="lazy">` : iconFor(tool);
   }
@@ -147,7 +148,7 @@
         <div class="card__body">
           ${availability(t)}
           <h3 class="card__title">${t.page ? `<a href="${pageUrl(t.id)}">${esc(t.name)}</a>` : esc(t.name)}</h3>
-          <p class="card__short">${esc(t.short)}</p>
+          <p class="card__short">${esc(t.short)}</p>${t.priceEstimated ? '<p class="deposit-note">Ориентировочная цена</p>' : ''}
           <div class="card__foot">
             <div class="price">${fmt(t.price)} ₽ <small>/ сутки</small></div>
             <button class="btn btn--primary card__add ${inCart(t.id) ? 'is-added' : ''}" data-add="${t.id}">${inCart(t.id) ? '✓ В списке' : 'Арендовать'}</button>
@@ -182,7 +183,7 @@
             <div><span>от 3 суток</span><b>${fmt(dayPrice(t, 3))} ₽</b></div>
             <div><span>от 7 суток</span><b>${fmt(dayPrice(t, 7))} ₽</b></div>
           </div>
-          <p class="deposit-note">Залог: <b>${fmt(t.deposit)} ₽</b> — возвращается при сдаче инструмента</p>
+          <p class="deposit-note">Залог: <b>${depositText(t)}</b>${t.depositPending ? "" : " — возвращается при сдаче инструмента"}</p>
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
           ${tasks.length ? `<h4>Подходит для</h4><p style="margin:0;font-size:14px">${esc(tasks.join(' · '))}</p>` : ''}
@@ -205,7 +206,7 @@
       return;
     }
     document.title = t.name + ' — аренда во Владивостоке | DALRENT';
-    document.querySelector('meta[name="description"]').content = t.short + ' Аренда от ' + dayPrice(t, 7) + ' ₽/сутки. Залог ' + t.deposit + ' ₽.';
+    document.querySelector('meta[name="description"]').content = t.short + ' Аренда от ' + dayPrice(t, 7) + ' ₽/сутки. Залог ' + (t.depositPending ? 'уточняется' : t.deposit + ' ₽') + '.';
     const combo = t.combo ? toolById[t.combo] : null;
     const consumablesText = tool => tool.consumables ? `${tool.consumables.qty} × ${fmt(tool.consumables.unitPrice)} ₽ = ${fmt(tool.consumables.qty * tool.consumables.unitPrice)} ₽` : '';
     const savings = (tool, days) => tool.components.reduce((sum, key) => sum + dayPrice(toolById[key], days), 0) - dayPrice(tool, days);
@@ -213,7 +214,7 @@
       <div class="product-detail">
         <div class="gallery">
           ${t.image ? `<a href="${esc(t.image)}" target="_blank" rel="noopener" aria-label="Открыть главное фото в полном размере" id="galleryLink"><img id="galleryMain" class="gallery__main" src="${esc(t.image)}" alt="${esc(t.name)}" width="560" height="504"></a>
-          <div class="gallery__thumbs">${t.images.map((src, i) => `<button type="button" class="gallery__thumb" data-gallery-image="${esc(src)}" aria-label="Фото ${i + 1}" aria-pressed="${i === 0}"><img src="${esc(src)}" alt="${esc((t.imageAlts || ['Общий вид', 'Дополнительный вид', 'Инструмент с кейсом'])[i] || t.name)}" width="90" height="80"></button>`).join('')}</div><p class="deposit-note">Нажмите на фото, чтобы открыть его в полном размере.</p>` : `<div class="gallery__placeholder">${iconFor(t)}<p>Vactool B12M20</p></div>`}
+          <div class="gallery__thumbs">${t.images.map((src, i) => `<button type="button" class="gallery__thumb" data-gallery-image="${esc(src)}" aria-label="Фото ${i + 1}" aria-pressed="${i === 0}"><img src="${esc(src)}" alt="${esc((t.imageAlts || ['Общий вид', 'Дополнительный вид', 'Инструмент с кейсом'])[i] || t.name)}" width="90" height="80"></button>`).join('')}</div><p class="deposit-note">Нажмите на фото, чтобы открыть его в полном размере.</p>` : `<div class="gallery__placeholder">${iconFor(t)}<p>Фото скоро добавим</p></div>`}
           ${t.components ? '<p class="deposit-note">В комбо также входит пылесос Vactool B12M20.</p>' : ''}
         </div>
         <div class="product-detail__info">
@@ -224,8 +225,8 @@
           <div class="price-table">
             ${[[1, '1–2 суток'], [3, '3–6 суток'], [7, 'От 7 суток']].map(([days, label]) => `<div><span>${label}</span><b>${fmt(dayPrice(t, days))} ₽</b><span>за сутки</span></div>`).join('')}
           </div>
-          <p class="deposit-note">Тариф применяется ко всему сроку аренды.</p>
-          <div class="product-deposit"><span>Возвратный залог</span><b>${fmt(t.deposit)} ₽</b></div>
+          <p class="deposit-note">${t.priceEstimated ? "Ориентировочные цены аренды. Точную стоимость подтвердит менеджер." : "Тариф применяется ко всему сроку аренды."}</p>
+          <div class="product-deposit"><span>Возвратный залог</span><b>${depositText(t)}</b></div>
           ${t.components ? '<p class="deposit-note">Залог за весь комплект — 3 000 ₽. Дополнительного залога за пылесос нет.</p>' : ''}
           ${t.consumables ? `<div class="consumables-note"><b>Диски: ${consumablesText(t)}</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>` : ''}
           <div class="product__actions"><button class="btn btn--primary btn--lg" data-book="${t.id}">Рассчитать аренду</button><button class="btn btn--ghost" data-add="${t.id}">В список аренды</button></div>
@@ -304,7 +305,10 @@
     const b = state.booking;
     const days = b.start && b.end ? daysBetween(b.start, b.end) : 1;
     const delivery = b.delivery === 'outside' ? CFG.outsideDeliveryPrice : 0;
-    return window.DALRENT_PRICING.calculate(state.cart, toolById, days, delivery);
+    const result = window.DALRENT_PRICING.calculate(state.cart, toolById, days, delivery);
+    result.depositPending = state.cart.some(i => toolById[i.id].depositPending);
+    result.priceEstimated = state.cart.some(i => toolById[i.id].priceEstimated);
+    return result;
   }
 
   function plural(n, one, few, many) {
@@ -332,7 +336,7 @@
         const t = toolById[i.id];
         return `<div class="cart-item">
           <div class="cart-item__icon">${media(t)}</div>
-          <div><div class="cart-item__name">${esc(t.name)}</div><div class="cart-item__price">${fmt(dayPrice(t, c.days))} ₽ / сутки · залог ${fmt(t.deposit)} ₽</div></div>
+          <div><div class="cart-item__name">${esc(t.name)}</div><div class="cart-item__price">${fmt(dayPrice(t, c.days))} ₽ / сутки · залог: ${depositText(t)}</div></div>
           <div class="qty"><button data-qty="${t.id}" data-d="-1" aria-label="Меньше">−</button><span>${i.qty}</span><button data-qty="${t.id}" data-d="1" aria-label="Больше">+</button></div>
         </div>`;
       }).join('')}</div>
@@ -356,8 +360,10 @@
           ${b.delivery !== 'pickup' ? `<div><span>Доставка</span><span>${c.delivery ? 'от ' + fmt(c.delivery) + ' ₽' : 'Бесплатно'}</span></div>` : ''}
           ${c.consumables ? `${c.consumableItems.map(i => `<div><span>${esc(i.name)} · ${i.quantity} шт. × ${fmt(i.unitPrice)} ₽</span><span>${fmt(i.total)} ₽</span></div>`).join('')}<p class="deposit-note">Диски оплачиваются при получении и остаются у вас.</p>` : ''}
           <div><span>Аренда и расходы</span><span>${c.delivery ? 'от ' : ''}${fmt(c.total)} ₽</span></div>
-          <div class="muted"><span>Возвратный залог</span><span>${fmt(c.deposit)} ₽</span></div>
-          <div class="total"><span>При получении</span><span>${c.delivery ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
+          <div class="muted"><span>Возвратный залог</span><span>${c.depositPending ? (c.deposit ? fmt(c.deposit) + " ₽ + уточняется" : "Уточняется") : fmt(c.deposit) + " ₽"}</span></div>
+          ${c.depositPending ? '<p class="deposit-note">В сумму не включён неуточнённый залог. Его размер сообщит менеджер.</p>' : ''}
+          ${c.priceEstimated ? '<p class="deposit-note">Расчёт предварительный: цены аренды подтвердит менеджер.</p>' : ''}
+          <div class="total"><span>При получении</span><span>${c.delivery || c.depositPending ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
           ${c.delivery ? '<p class="deposit-note">Точную стоимость доставки за город подтвердит менеджер.</p>' : ''}
         </div>
 
