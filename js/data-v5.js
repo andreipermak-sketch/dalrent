@@ -11,9 +11,8 @@ window.SITE_CONFIG = {
   hours: 'Понедельник — суббота\n09:00–19:00\n\nВоскресенье\n10:00–17:00',
   deliveryPrice: 0,
   outsideDeliveryPrice: 450,
-  // Куда отправлять заявки. Пусто = демо-режим (заявка сохраняется только в браузере).
-  // Например, адрес формы Formspree / Web3Forms или ваш сервер.
-  formEndpoint: '',
+  // Приём заявок на рабочую почту через FormSubmit.
+  formEndpoint: 'https://formsubmit.co/ajax/DalRent@yandex.ru',
 };
 
 window.CATEGORIES = [

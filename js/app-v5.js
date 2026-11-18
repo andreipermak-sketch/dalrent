@@ -404,6 +404,7 @@
   }
 
   async function submitBooking(form) {
+    if (form.dataset.sending === "true") return;
     readForm(form);
     $$('.field.is-error', form).forEach(f => { f.classList.remove('is-error'); const e = f.querySelector('.field__err'); if (e) e.remove(); });
     const b = state.booking;
@@ -420,31 +421,27 @@
 
     const c = calc();
     const order = {
-      number: 'DR-' + Date.now().toString().slice(-6),
+      number: 'DR-' + Date.now().toString(36).toUpperCase(),
       createdAt: new Date().toISOString(),
       customer: { name: b.name.trim(), phone: b.phone.trim(), comment: b.comment || '' },
       dates: { start: b.start, end: b.end, days: c.days },
       delivery: b.delivery !== 'pickup' ? { type: b.delivery === 'outside' ? 'За город' : 'По городу', address: b.address, price: c.delivery, estimated: b.delivery === 'outside' } : { type: 'Самовывоз' },
       items: state.cart.map(i => ({ id: i.id, name: toolById[i.id].name, qty: i.qty, pricePerDay: dayPrice(toolById[i.id], c.days) })),
+      depositPending: c.depositPending, priceEstimated: c.priceEstimated,
       rent: c.rent, consumables: c.consumables, consumableItems: c.consumableItems, total: c.total, deposit: c.deposit, payable: c.payable,
     };
 
     const btn = form.querySelector('[type=submit]');
+    form.dataset.sending = 'true';
     btn.disabled = true; btn.textContent = 'Отправляем…';
     try {
-      if (CFG.formEndpoint) {
-        const res = await fetch(CFG.formEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ subject: 'Заявка ' + order.number, ...order, text: orderText(order) }),
-        });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-
-      }
+      await sendBooking(order);
     } catch (e) {
-      btn.disabled = false; btn.textContent = 'Отправить заявку';
-      toast('Не удалось отправить. Позвоните нам: ' + CFG.phone);
+      toast('Не удалось подтвердить отправку. Корзина сохранена. Свяжитесь с нами: ' + CFG.phone);
       return;
+    } finally {
+      delete form.dataset.sending;
+      btn.disabled = false; btn.textContent = 'Отправить заявку';
     }
 
     state.cart = [];
@@ -453,11 +450,40 @@
     $('#cartBody').innerHTML = `
       <div class="success">
         <div class="success__icon">✓</div>
-        <h3>Заявка ${order.number} принята</h3>
-        <p>Менеджер перезвонит на ${esc(order.customer.phone)} в течение 15 минут и подтвердит бронь.</p>
-        <p>Аренда: <b>${fmt(order.rent)} ₽</b>, расходники: <b>${fmt(order.consumables)} ₽</b>, залог: <b>${fmt(order.deposit)} ₽</b></p><p>При получении: <b>${order.delivery.estimated ? 'от ' : ''}${fmt(order.payable)} ₽</b></p>
+        <h3>Заявка ${order.number} отправлена</h3>
+        <p>Менеджер свяжется с вами по номеру ${esc(order.customer.phone)}, чтобы подтвердить наличие, стоимость и бронь.</p>
+        <p>Аренда: <b>${fmt(order.rent)} ₽</b>, расходники: <b>${fmt(order.consumables)} ₽</b>, залог: <b>${order.depositPending ? "уточняется" : fmt(order.deposit) + " ₽"}</b></p><p>При получении: <b>${order.delivery.estimated || order.depositPending ? 'от ' : ''}${fmt(order.payable)} ₽</b></p>
         <button class="btn btn--dark" data-close>Готово</button>
       </div>`;
+  }
+
+  async function sendBooking(order) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 25000);
+    try {
+      const res = await fetch(CFG.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          _subject: 'Заявка DALRENT ' + order.number,
+          _template: 'table',
+          name: order.customer.name,
+          phone: order.customer.phone,
+          message: orderText(order),
+          'Номер заявки': order.number,
+          'Согласие на обработку данных': 'Получено для оформления брони',
+          'Страница': window.location.href,
+        }),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const result = await res.json();
+      if (result.success !== true && result.success !== 'true') {
+        throw new Error('Delivery not confirmed');
+      }
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   function orderText(o) {
@@ -468,8 +494,11 @@
       `${o.delivery.type}${o.delivery.address ? ': ' + o.delivery.address : ''}`,
       ...o.items.map(i => `• ${i.name} × ${i.qty} — ${i.pricePerDay} ₽/сут`),
       `Аренда: ${o.rent} ₽; диски: ${o.consumables} ₽`,
-      `Итого: ${o.delivery.estimated ? 'от ' : ''}${o.total} ₽, залог: ${o.deposit} ₽`,
-      `При получении: ${o.delivery.estimated ? 'от ' : ''}${o.payable} ₽`,
+      ...(o.consumableItems || []).map(i => `Расходник: ${i.name} × ${i.quantity} — ${i.total} ₽`),
+      o.delivery.type !== 'Самовывоз' ? `Доставка: ${o.delivery.estimated ? 'от ' : ''}${o.delivery.price} ₽` : '',
+      `Итого: ${o.delivery.estimated ? 'от ' : ''}${o.total} ₽, залог: ${o.depositPending ? 'уточняется' : o.deposit + ' ₽'}`,
+      `При получении: ${o.delivery.estimated || o.depositPending ? 'от ' : ''}${o.payable} ₽`,
+      o.priceEstimated ? 'Цены предварительные, требуют подтверждения менеджером.' : '',
       o.customer.comment ? `Комментарий: ${o.customer.comment}` : '',
     ].filter(Boolean).join('\n');
   }
