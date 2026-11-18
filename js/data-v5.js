@@ -11,8 +11,8 @@ window.SITE_CONFIG = {
   hours: 'Понедельник — суббота\n09:00–19:00\n\nВоскресенье\n10:00–17:00',
   deliveryPrice: 0,
   outsideDeliveryPrice: 450,
-  // Приём заявок на рабочую почту через FormSubmit.
-  formEndpoint: 'https://formsubmit.co/ajax/DalRent@yandex.ru',
+  // Приём заявок собственным сервером DALRENT.
+  formEndpoint: 'https://link.dalrent.ru/api/booking',
 };
 
 window.CATEGORIES = [

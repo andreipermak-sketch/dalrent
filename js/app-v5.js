@@ -349,6 +349,7 @@
       }).join('')}</div>
 
       <form class="form" id="bookingForm" novalidate>
+        <input name="website" type="text" hidden tabindex="-1" autocomplete="off">
         <div class="form__row">
           <label class="field"><span>Дата получения</span><input type="date" name="start" min="${today}" value="${b.start}" required></label>
           <label class="field"><span>Дата возврата</span><input type="date" name="end" min="${b.start}" value="${b.end}" required></label>
@@ -420,8 +421,13 @@
     }
 
     const c = calc();
+    const signature = JSON.stringify([state.cart, b]);
+    if (!state.pendingSubmission || state.pendingSubmission.signature !== signature) {
+      state.pendingSubmission = { signature, number: 'DR-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 8).toUpperCase() };
+    }
     const order = {
-      number: 'DR-' + Date.now().toString(36).toUpperCase(),
+      number: state.pendingSubmission.number,
+      website: form.elements.namedItem('website').value,
       createdAt: new Date().toISOString(),
       customer: { name: b.name.trim(), phone: b.phone.trim(), comment: b.comment || '' },
       dates: { start: b.start, end: b.end, days: c.days },
@@ -444,13 +450,14 @@
       btn.disabled = false; btn.textContent = 'Отправить заявку';
     }
 
+    state.pendingSubmission = null;
     state.cart = [];
     saveCart();
     renderGrid();
     $('#cartBody').innerHTML = `
       <div class="success">
         <div class="success__icon">✓</div>
-        <h3>Заявка ${order.number} отправлена</h3>
+        <h3>Заявка ${order.number} получена</h3>
         <p>Менеджер свяжется с вами по номеру ${esc(order.customer.phone)}, чтобы подтвердить наличие, стоимость и бронь.</p>
         <p>Аренда: <b>${fmt(order.rent)} ₽</b>, расходники: <b>${fmt(order.consumables)} ₽</b>, залог: <b>${order.depositPending ? "уточняется" : fmt(order.deposit) + " ₽"}</b></p><p>При получении: <b>${order.delivery.estimated || order.depositPending ? 'от ' : ''}${fmt(order.payable)} ₽</b></p>
         <button class="btn btn--dark" data-close>Готово</button>
@@ -466,14 +473,12 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         signal: controller.signal,
         body: JSON.stringify({
-          _subject: 'Заявка DALRENT ' + order.number,
-          _template: 'table',
+          requestId: order.number,
           name: order.customer.name,
           phone: order.customer.phone,
           message: orderText(order),
-          'Номер заявки': order.number,
-          'Согласие на обработку данных': 'Получено для оформления брони',
-          'Страница': window.location.href,
+          consent: true,
+          website: order.website || '',
         }),
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
