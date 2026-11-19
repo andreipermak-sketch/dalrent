@@ -154,10 +154,10 @@ window.TOOLS = [
     short: 'Циклёвка паркета и деревянных полов.',
     specs: { 'Мощность': '2,2 кВт', 'Ширина барабана': '200 мм', 'Вес': '75 кг' },
     kit: ['Пылесборник', 'Абразив оплачивается отдельно'] },
-  { id: 'makita-9565', cat: 'grinding', name: 'Шлифмашина по бетону Makita PC5010C', brand: 'Makita', price: 1100, rates: { 2: 900, 7: 810 }, deposit: 14000, stock: 1,
+  { id: 'makita-9565', page: true, slug: 'shlifmashina-po-betonu-makita-pc5010c', wearPricePerMm: 290, cat: 'grinding', name: 'Шлифмашина по бетону Makita PC5010C', brand: 'Makita', price: 800, rates: { 3: 600, 7: 520 }, deposit: 14000, stock: 1,
     tasks: ['floor', 'concrete'],
     short: 'Выравнивание бетона и снятие старых покрытий.',
-    specs: { 'Мощность': '1400 Вт', 'Диск': '125 мм', 'Пылеудаление': 'Да' },
+    specs: { 'Тип': 'Сетевая шлифовальная машина по бетону', 'Тип шлифования': 'Сухое', 'Диаметр посадочного отверстия': '22,23 мм', 'Длина сетевого кабеля': '2 м', 'Вес': '9,35 кг' },
     kit: ['Алмазная чашка'] },
 
   { id: 'bosch-gll380', slug: 'lazernyy-nivelir-bosch-gll380', page: true, technicalOnly: true, image: 'img/catalog/bosch-gll380-1.jpg', images: ["img/catalog/bosch-gll380-1.jpg", "img/catalog/bosch-gll380-2.jpg"], cat: 'measure', name: 'Лазерный нивелир Bosch GLL 3-80', brand: 'Bosch', price: 750, rates: { 2: 550, 7: 495 }, deposit: 10000, stock: 4, popular: true,
