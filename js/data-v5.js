@@ -595,14 +595,17 @@ window.TOOLS.push(...[
     "cat": "lighting",
     "name": "Прожекторы на штативе Gigant GTMS-100",
     "brand": "Gigant",
-    "price": 300,
-    "priceEstimated": true,
+    "price": 850,
+    "rates": { "3": 700, "7": 550 },
+    "priceEstimated": false,
     "stock": null,
     "tasks": [],
     "short": "",
     "specs": {
-      "Марка": "Gigant",
-      "Модель": "GTMS-100"
+      "Способ установки": "На треноге",
+      "Тип лампы": "Светодиоды",
+      "Мощность светильника": "100 Вт",
+      "Степень защиты": "IP65"
     },
     "kit": [],
     "images": ["img/catalog/gigant-gtms100-vi.jpg"],
