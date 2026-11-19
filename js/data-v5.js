@@ -171,11 +171,6 @@ window.TOOLS = [
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
     kit: ['Чехол'] },
 
-  { id: 'karcher-nt30', cat: 'cleaning', name: 'Строительный пылесос Kärcher NT 30/1', brand: 'Kärcher', price: 1100, rates: { 2: 900, 7: 810 }, stock: 5,
-    tasks: ['demolition', 'walls', 'electric'],
-    short: 'Сухая и влажная уборка, подключение к штроборезу и шлифмашинам.',
-    specs: { 'Мощность': '1380 Вт', 'Бак': '30 л', 'Розетка для инструмента': 'Да' },
-    kit: ['Шланг', 'Насадки', 'Мешок'] },
   { id: 'karcher-k5', cat: 'cleaning', name: 'Мойка высокого давления Kärcher K5', brand: 'Kärcher', price: 1200, rates: { 2: 1000, 7: 900 }, stock: 3,
     tasks: ['garden'],
     short: 'Мойка фасадов, плитки, заборов и техники.',
