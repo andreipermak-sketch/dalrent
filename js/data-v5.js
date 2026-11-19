@@ -161,7 +161,7 @@ window.TOOLS = [
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
     kit: ['Чехол'] },
 
-  { id: 'mixer-180', page: true, slug: 'betonomeshalka-180-l', cat: 'construction', name: 'Бетономешалка 180 л', brand: 'Lebedyan', price: 750, rates: { 3: 600, 7: 500 }, stock: 3,
+  { id: 'mixer-180', image: 'img/catalog/mixer180-1.webp', images: ['img/catalog/mixer180-1.webp'], imageAlts: ['Бетономешалка 180 л — общий вид'], page: true, slug: 'betonomeshalka-180-l', cat: 'construction', name: 'Бетономешалка 180 л', brand: 'Lebedyan', price: 750, rates: { 3: 600, 7: 500 }, stock: 3,
     tasks: ['concrete'],
     short: 'Приготовление бетона и раствора для фундамента и стяжки.',
     specs: { 'Тип двигателя': 'Электрический', 'Мощность двигателя': '800 Вт', 'Объём барабана': '180 л', 'Объём готового раствора': '130 л', 'Напряжение питания': '220 В', 'Вес': 'Около 43–47 кг' },
