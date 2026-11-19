@@ -171,12 +171,6 @@ window.TOOLS = [
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
     kit: ['Чехол'] },
 
-  { id: 'karcher-k5', cat: 'cleaning', name: 'Мойка высокого давления Kärcher K5', brand: 'Kärcher', price: 1200, rates: { 2: 1000, 7: 900 }, stock: 3,
-    tasks: ['garden'],
-    short: 'Мойка фасадов, плитки, заборов и техники.',
-    specs: { 'Давление': '145 бар', 'Производительность': '500 л/ч' },
-    kit: ['Пистолет', 'Грязевая фреза'] },
-
   { id: 'mixer-180', cat: 'construction', name: 'Бетономешалка 180 л', brand: 'Lebedyan', price: 900, rates: { 2: 700, 7: 630 }, stock: 3,
     tasks: ['concrete'],
     short: 'Приготовление бетона и раствора для фундамента и стяжки.',
