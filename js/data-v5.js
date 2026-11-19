@@ -154,7 +154,7 @@ window.TOOLS = [
     short: 'Циклёвка паркета и деревянных полов.',
     specs: { 'Мощность': '2,2 кВт', 'Ширина барабана': '200 мм', 'Вес': '75 кг' },
     kit: ['Пылесборник', 'Абразив оплачивается отдельно'] },
-  { id: 'makita-9565', page: true, slug: 'shlifmashina-po-betonu-makita-pc5010c', wearPricePerMm: 290, cat: 'grinding', name: 'Шлифмашина по бетону Makita PC5010C', brand: 'Makita', price: 800, rates: { 3: 600, 7: 520 }, deposit: 14000, stock: 1,
+  { id: 'makita-9565', image: 'img/catalog/makita-pc5010c-1.webp', images: ['img/catalog/makita-pc5010c-1.webp', 'img/catalog/makita-pc5010c-2.webp'], imageAlts: ['Makita PC5010C с кейсом', 'Makita PC5010C — дополнительный вид'], page: true, slug: 'shlifmashina-po-betonu-makita-pc5010c', wearPricePerMm: 290, cat: 'grinding', name: 'Шлифмашина по бетону Makita PC5010C', brand: 'Makita', price: 800, rates: { 3: 600, 7: 520 }, deposit: 14000, stock: 1,
     tasks: ['floor', 'concrete'],
     short: 'Выравнивание бетона и снятие старых покрытий.',
     specs: { 'Тип': 'Сетевая шлифовальная машина по бетону', 'Тип шлифования': 'Сухое', 'Диаметр посадочного отверстия': '22,23 мм', 'Длина сетевого кабеля': '2 м', 'Вес': '9,35 кг' },
