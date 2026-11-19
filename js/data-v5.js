@@ -713,15 +713,16 @@ window.TOOLS.push(...[
     "cat": "garden",
     "name": "Аккумуляторная воздуходувка Makita DUB184Z",
     "brand": "Makita",
-    "price": 500,
-    "priceEstimated": true,
+    "price": 700,
+    "rates": { "3": 600, "7": 450 },
+    "priceEstimated": false,
     "stock": null,
     "tasks": [],
     "short": "",
     "specs": {
-      "Марка": "Makita",
-      "Модель": "DUB184Z LXT",
-      "Напряжение": "18 В"
+      "Тип": "Аккумуляторный",
+      "Регулировка скорости воздушного потока": "Есть",
+      "Вес нетто": "3,1 кг"
     },
     "kit": [],
     "images": ["img/catalog/makita-dub184-vi.jpg"],
