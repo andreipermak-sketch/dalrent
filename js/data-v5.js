@@ -118,11 +118,6 @@ window.TOOLS = [
     specs: {"Мощность": "2200 Вт", "Диаметр сверления": "до 162 мм", "Режим сверления": "Мокрое и сухое", "Скорости": "3", "Обороты": "840 / 1640 / 3070 об/мин", "Защитная муфта": "Есть", "Вес": "8,35 кг"},
     kit: ['Стойка', 'Коронки 52, 72, 112, 132 мм', 'Водяной бачок'] },
 
-  { id: 'bosch-gnf35', slug: 'shtroborez-bosch-gnf35', page: true, technicalOnly: true, image: 'img/catalog/bosch-gnf35-1.jpg', images: ["img/catalog/bosch-gnf35-1.jpg", "img/catalog/bosch-gnf35-2.jpg"], cat: 'cutting', name: 'Штроборез Bosch GNF 35 CA', brand: 'Bosch', price: 1200, stock: 2, popular: true,
-    tasks: ['electric'],
-    short: 'Ровные штробы под проводку без пыли — подключается к пылесосу.',
-    specs: {"Мощность": "1400 Вт", "Диаметр диска": "150 мм", "Глубина реза": "до 35 мм", "Ширина штробы": "3–39 мм", "Обороты": "9300 об/мин", "Подключение пылесоса": "Есть", "Плавный пуск": "Есть", "Вес": "4,7 кг"},
-    kit: ['2 алмазных диска', 'Кейс'] },
   { id: 'makita-ga9020', slug: 'bolgarka-ushm-makita-ga9020', page: true, technicalOnly: true, image: 'img/catalog/makita-ga9020-1.jpg', images: ["img/catalog/makita-ga9020-1.jpg", "img/catalog/makita-ga9020-2.jpg"], cat: 'cutting', name: 'Болгарка (УШМ) Makita GA9020', brand: 'Makita', price: 850, rates: { 2: 650, 7: 585 }, stock: 5,
     tasks: ['demolition', 'tile'],
     short: 'Резка металла, камня и плитки диском 230 мм.',
