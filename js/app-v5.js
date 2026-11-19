@@ -186,7 +186,7 @@
           <h2 id="pmTitle">${esc(t.name)}</h2>
           ${t.technicalOnly ? '' : `<p>${esc(t.short)}</p>`}
           <div class="price-table" ${tariffRows(t).length === 4 ? 'style="grid-template-columns:repeat(2,minmax(0,1fr))"' : ''}>
-            ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b></div>`).join('')}
+            ${tariffRows(t).map(band => `<button type="button" data-tariff="${t.id}" data-days="${band.start}" aria-label="${band.label}, ${fmt(band.price)} рублей за сутки — рассчитать аренду"><span>${band.label}</span><b>${fmt(band.price)} ₽</b></button>`).join('')}
           </div>
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
@@ -229,7 +229,7 @@
           ${t.technicalOnly ? '' : `<p class="product-detail__lead">${esc(t.short)}</p>`}
           ${availability(t)}
           <div class="price-table" ${tariffRows(t).length === 4 ? 'style="grid-template-columns:repeat(2,minmax(0,1fr))"' : ''}>
-            ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b><span>за сутки</span></div>`).join('')}
+            ${tariffRows(t).map(band => `<button type="button" data-tariff="${t.id}" data-days="${band.start}" aria-label="${band.label}, ${fmt(band.price)} рублей за сутки — рассчитать аренду"><span>${band.label}</span><b>${fmt(band.price)} ₽</b><span>за сутки</span></button>`).join('')}
           </div>
           <p class="deposit-note">${t.priceEstimated ? "Ориентировочные цены аренды. Точную стоимость подтвердит менеджер." : "Тариф применяется ко всему сроку аренды."}</p>
           ${t.consumables ? `<div class="consumables-note"><b>Диски: ${consumablesText(t)}</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>` : ''}
@@ -524,6 +524,19 @@
       const t = e.target;
       const el = sel => t.closest(sel);
 
+      if (el('[data-tariff]')) {
+        const button = el('[data-tariff]');
+        const days = Number(button.dataset.days);
+        const today = isoDate(new Date());
+        const start = state.booking.start && state.booking.start >= today ? state.booking.start : today;
+        const end = new Date(start + 'T12:00');
+        end.setDate(end.getDate() + days);
+        Object.assign(state.booking, { start, end: isoDate(end) });
+        addToCart(button.dataset.tariff, true);
+        closeLayer($('#productModal'));
+        renderCart(); openLayer('#cartDrawer');
+        return;
+      }
       if (el('[data-gallery-image]')) {
         const b = el('[data-gallery-image]');
         $('#galleryMain').src = b.dataset.galleryImage;

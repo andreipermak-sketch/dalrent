@@ -363,3 +363,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow-dark); o
 @media(max-width:600px) { .product-page { padding-top: 24px; } .price-table div { padding: 10px 5px; } .price-table b { font-size: 18px; } .combo-offer { padding: 24px; } .seg--delivery { grid-template-columns: 1fr; } .summary .total { font-size: 18px; } }
 
 [data-hours]{white-space:pre-line;line-height:1.65;display:block}
+
+/* Tariff choices open the booking form for the selected duration. */
+.price-table > button{font:inherit;color:inherit;border:2px solid transparent;background:var(--gray);border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s}
+.price-table > button:first-child{background:var(--black);color:var(--white)}
+.price-table > button:first-child span{color:#A8A8A8}
+.price-table > button:first-child b{color:var(--yellow)}
+.price-table > button:hover{border-color:var(--yellow);transform:translateY(-2px)}
+.price-table > button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+@media(max-width:600px){.price-table > button{padding:10px 5px}}
