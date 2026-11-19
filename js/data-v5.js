@@ -144,7 +144,7 @@ window.TOOLS = [
     specs: {"Мощность": "780 Вт", "Пропил по дереву": "до 150 мм", "Пропил по металлу": "до 20 мм", "Ход пилки": "26 мм", "Частота хода": "500–3100 ход/мин", "Подключение пылесоса": "Есть", "Вес": "2,6 кг"},
     kit: ['Набор пилок'] },
 
-  { id: 'fubag-wall', cat: 'grinding', name: 'Шлифовальная машина с подсветкой «Жираф» ASPRO-С10', brand: 'ASPRO', page: true, slug: 'shlifovalnaya-mashina-aspro-c10', image: 'img/catalog/aspro-c10-white.png', price: 1150, rates: { 3: 950, 7: 850 }, deposit: 12000, stock: 3, popular: true,
+  { id: 'fubag-wall', cat: 'grinding', name: 'Шлифовальная машина с подсветкой «Жираф» ASPRO-С10', brand: 'ASPRO', page: true, slug: 'shlifovalnaya-mashina-aspro-c10', image: 'img/catalog/aspro-c10-white.png', images: ['img/catalog/aspro-c10-white.png'], imageAlts: ['ASPRO-С10 с кейсом на белом фоне'], price: 1150, rates: { 3: 950, 7: 850 }, deposit: 12000, stock: 3, popular: true,
     tasks: ['walls'],
     short: 'Шлифовка шпаклёвки на стенах и потолках без лесов.',
     specs: { 'Вид инструмента': 'Электрический', 'Подсветка': 'Двойная светодиодная', 'Напряжение': '220 В', 'Обороты шлифовального круга': '1300–2000 об/мин', 'Диаметр шлифовального круга': '225 мм', 'Длина телескопической ручки': '110–180 см', 'Вес': '6,5 кг' },
