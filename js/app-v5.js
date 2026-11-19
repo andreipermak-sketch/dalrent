@@ -193,7 +193,7 @@
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
           ${tasks.length ? `<h4>Подходит для</h4><p style="margin:0;font-size:14px">${esc(tasks.join(' · '))}</p>` : ''}
-          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно по фактическому износу после возврата. В расчёт аренды не включён.</p></div>` : ''}
+          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно, в стоимость аренды не включён.</p></div>` : ''}
           <div class="product__actions">
             <button class="btn btn--primary btn--lg" data-book="${t.id}">Забронировать</button>
             <button class="btn btn--ghost btn--lg" data-add-close="${t.id}">${inCart(t.id) ? '✓ В списке' : 'Добавить в список'}</button>
@@ -237,7 +237,7 @@
           <div class="product-deposit"><span>Возвратный залог</span><b>${depositText(t)}</b></div>
           ${t.components ? '<p class="deposit-note">Залог за весь комплект — 3 000 ₽. Дополнительного залога за пылесос нет.</p>' : ''}
           ${t.consumables ? `<div class="consumables-note"><b>Диски: ${consumablesText(t)}</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>` : ''}
-          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно по фактическому износу после возврата. В расчёт аренды не включён.</p></div>` : ''}
+          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно, в стоимость аренды не включён.</p></div>` : ''}
           <div class="product__actions"><button class="btn btn--primary btn--lg" data-book="${t.id}">Рассчитать аренду</button><button class="btn btn--ghost" data-add="${t.id}">В список аренды</button></div>
           <p class="deposit-note">Выберите даты — покажем аренду, расходники и всю сумму при получении.</p>
         </div>
@@ -373,7 +373,7 @@
           <div class="muted"><span>Возвратный залог</span><span>${c.depositPending ? (c.deposit ? fmt(c.deposit) + " ₽ + уточняется" : "Уточняется") : fmt(c.deposit) + " ₽"}</span></div>
           ${c.depositPending ? '<p class="deposit-note">В сумму не включён неуточнённый залог. Его размер сообщит менеджер.</p>' : ''}
           ${c.priceEstimated ? '<p class="deposit-note">Расчёт предварительный: цены аренды подтвердит менеджер.</p>' : ''}
-          ${state.cart.filter(i => toolById[i.id].wearPricePerMm).map(i => `<p class="deposit-note">${esc(toolById[i.id].name)}: износ диска — ${fmt(toolById[i.id].wearPricePerMm)} ₽ за 1 мм. Оплачивается отдельно по фактическому износу после возврата, в расчёт не включён.</p>`).join('')}
+          ${state.cart.filter(i => toolById[i.id].wearPricePerMm).map(i => `<p class="deposit-note">${esc(toolById[i.id].name)}: износ диска — ${fmt(toolById[i.id].wearPricePerMm)} ₽ за 1 мм. Оплачивается отдельно, в стоимость аренды не включён.</p>`).join('')}
           <div class="total"><span>При получении</span><span>${c.delivery || c.depositPending ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
           ${c.delivery ? '<p class="deposit-note">Точную стоимость доставки за город подтвердит менеджер.</p>' : ''}
         </div>
@@ -503,7 +503,7 @@
       `${o.delivery.type}${o.delivery.address ? ': ' + o.delivery.address : ''}`,
       ...o.items.map(i => `• ${i.name} × ${i.qty} — ${i.pricePerDay} ₽/сут`),
       `Аренда: ${o.rent} ₽; диски: ${o.consumables} ₽`,
-      ...(o.wearItems || []).map(i => `Износ диска (${i.name}, ${i.qty} шт.): ${i.pricePerMm} ₽ за 1 мм, отдельно по фактическому износу после возврата; в сумму не включён.`),
+      ...(o.wearItems || []).map(i => `Износ диска (${i.name}, ${i.qty} шт.): ${i.pricePerMm} ₽ за 1 мм, оплачивается отдельно, в стоимость аренды не включён.`),
       ...(o.consumableItems || []).map(i => `Расходник: ${i.name} × ${i.quantity} — ${i.total} ₽`),
       o.delivery.type !== 'Самовывоз' ? `Доставка: ${o.delivery.estimated ? 'от ' : ''}${o.delivery.price} ₽` : '',
       `Итого: ${o.delivery.estimated ? 'от ' : ''}${o.total} ₽, залог: ${o.depositPending ? 'уточняется' : o.deposit + ' ₽'}`,
