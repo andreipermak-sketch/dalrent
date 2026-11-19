@@ -86,7 +86,7 @@ window.TOOLS = [
     kit: ['Штроборез в кейсе', 'Строительный пылесос Vactool B12M20', 'Два диска — оплачиваются отдельно и остаются у клиента'],
     consumables: { name: 'Два диска', qty: 2, unitPrice: 700 } },
 
-  { id: 'makita-hr2470', slug: 'perforator-makita-hr2470', page: true, technicalOnly: true, image: 'img/catalog/makita-hr2470-1.jpg', images: ["img/catalog/makita-hr2470-1.jpg", "img/catalog/makita-hr2470-2.jpg"], cat: 'perforators', name: 'Перфоратор Makita HR2470', brand: 'Makita', price: 600, rates: { 2: 400, 7: 360 }, stock: 6, popular: true,
+  { id: 'makita-hr2470', slug: 'perforator-makita-hr2470', page: true, technicalOnly: true, image: 'img/catalog/makita-hr2470-1.jpg', images: ["img/catalog/makita-hr2470-1.jpg", "img/catalog/makita-hr2470-2.jpg"], cat: 'perforators', name: 'Перфоратор Makita HR2470', brand: 'Makita', price: 600, rates: { 2: 450, 7: 380 }, stock: 6, popular: true,
     tasks: ['demolition', 'drilling', 'electric'],
     short: 'Универсальный перфоратор для квартиры: сверление, бурение, лёгкий демонтаж.',
     specs: {"Мощность": "780 Вт", "Патрон": "SDS-plus", "Энергия удара": "2,4 Дж", "Бурение бетона": "до 24 мм", "Режимы": "3", "Частота ударов": "0–4500 уд/мин", "Вес": "2,6 кг", "Длина кабеля": "4 м"},
