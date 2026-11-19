@@ -203,11 +203,6 @@ window.TOOLS = [
     short: 'Прогрев объекта зимой и ускорение высыхания.',
     specs: { 'Мощность': '20 кВт', 'Бак': '19 л', 'Площадь': 'до 200 м²' },
     kit: [] },
-  { id: 'master-dh720', cat: 'climate', name: 'Осушитель воздуха Master DH 720', brand: 'Master', price: 1000, deposit: 12000, stock: 2,
-    tasks: ['heat', 'floor'],
-    short: 'Сушка помещения после стяжки, штукатурки или затопления.',
-    specs: { 'Производительность': '36 л/сутки', 'Площадь': 'до 150 м²' },
-    kit: ['Шланг слива'] },
 
   { id: 'huter-dy6500', slug: 'benzogenerator-huter-dy6500', page: true, technicalOnly: true, image: 'img/catalog/huter-dy6500-1.jpg', images: ["img/catalog/huter-dy6500-1.jpg", "img/catalog/huter-dy6500-2.jpg"], cat: 'power', name: 'Бензогенератор Huter DY6500L 5,5 кВт', brand: 'Huter', price: 1300, rates: { 2: 1100, 7: 990 }, deposit: 15000, stock: 2,
     tasks: ['concrete', 'garden'],
