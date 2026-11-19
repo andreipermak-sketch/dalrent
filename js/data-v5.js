@@ -165,7 +165,7 @@ window.TOOLS = [
     short: 'Три плоскости 360° — разметка стен, полов, потолков.',
     specs: {"Плоскости": "3 × 360°", "Дальность без приёмника": "до 30 м", "Дальность с приёмником": "до 120 м", "Точность": "±0,2 мм/м", "Самовыравнивание": "±4°", "Цвет луча": "Красный", "Защита": "IP54"},
     kit: ['Штатив', 'Мишень', 'Кейс'] },
-  { id: 'bosch-glm50', image: 'img/catalog/bosch-glm50-vi.jpg', images: ['img/catalog/bosch-glm50-vi.jpg'], cat: 'measure', name: 'Лазерный дальномер Bosch GLM 50', brand: 'Bosch', price: 250, deposit: 3000, stock: 5,
+  { id: 'bosch-glm50', page: true, slug: 'lazernyy-dalnomer-bosch-glm50', image: 'img/catalog/bosch-glm50-vi.jpg', images: ['img/catalog/bosch-glm50-vi.jpg'], cat: 'measure', name: 'Лазерный дальномер Bosch GLM 50', brand: 'Bosch', price: 450, rates: { 3: 300, 7: 250 }, deposit: 3000, stock: 5,
     tasks: ['walls', 'floor'],
     short: 'Замер помещений, площади и объёма за секунды.',
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
