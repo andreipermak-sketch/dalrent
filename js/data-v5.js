@@ -183,7 +183,7 @@ window.TOOLS = [
     short: 'Электричество на участке и объекте без подключения к сети.',
     specs: {"Номинальная мощность": "5 кВт", "Максимальная мощность": "5,5 кВт", "Напряжение": "220 В", "Стартер": "Ручной", "Двигатель": "Четырёхтактный, бензиновый", "Топливный бак": "22 л", "Вес": "74,5 кг"},
     kit: [] },
-  { id: 'resanta-220', slug: 'svarochnyy-invertor-resanta-220', page: true, technicalOnly: true, image: 'img/catalog/resanta-220-1.jpg', images: ["img/catalog/resanta-220-1.jpg", "img/catalog/resanta-220-2.jpg"], cat: 'power', name: 'Сварочный инвертор Ресанта САИ 220', brand: 'Ресанта', price: 500, stock: 3,
+  { id: 'resanta-220', slug: 'svarochnyy-invertor-resanta-220', page: true, technicalOnly: true, image: 'img/catalog/resanta-220-1.jpg', images: ["img/catalog/resanta-220-1.jpg", "img/catalog/resanta-220-2.jpg"], cat: 'power', name: 'Сварочный инвертор Ресанта САИ 220', brand: 'Ресанта', price: 700, rates: { 3: 600, 7: 520 }, stock: 3,
     tasks: ['concrete'],
     short: 'Сварка металлоконструкций, заборов, арматуры.',
     specs: {"Напряжение": "220 В", "Сварочный ток": "10–220 А", "Диаметр электрода": "2–5 мм", "Продолжительность включения": "70%", "Антизалипание": "Есть", "Степень защиты": "IP21", "Вес": "3,2 кг"},
