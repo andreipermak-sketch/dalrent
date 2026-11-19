@@ -198,7 +198,7 @@ window.TOOLS = [
     specs: {"Мощность": "630 Вт", "Производительность": "0,5 л/мин", "Объём бачка": "0,8 л", "Диаметр сопла": "2,5 мм", "Система распыления": "HVLP", "Максимальная вязкость": "170 DIN", "Вес": "1,9 кг"},
     kit: ['Насадка для стен', 'Насадка для деталей'] },
 
-  { id: 'ballu-20', page: true, slug: 'dizelnaya-teplovaya-pushka-ballu-20-kvt', cat: 'climate', name: 'Дизельная тепловая пушка Ballu 20 кВт', brand: 'Ballu', price: 1050, rates: { 3: 850, 7: 750 }, deposit: 10000, stock: 3,
+  { id: 'ballu-20', image: 'img/catalog/ballu-bhdp20-1.webp', images: ['img/catalog/ballu-bhdp20-1.webp', 'img/catalog/ballu-bhdp20-2.webp'], imageAlts: ['Дизельная тепловая пушка Ballu — общий вид', 'Ballu — вид сзади и топливный бак'], page: true, slug: 'dizelnaya-teplovaya-pushka-ballu-20-kvt', cat: 'climate', name: 'Дизельная тепловая пушка Ballu 20 кВт', brand: 'Ballu', price: 1050, rates: { 3: 850, 7: 750 }, deposit: 10000, stock: 3,
     tasks: ['heat', 'concrete'],
     short: 'Прогрев объекта зимой и ускорение высыхания.',
     specs: { 'Мощность при обогреве': '20 кВт', 'Максимальная площадь обогрева': '200 м²', 'Расход топлива': '1,904 л/ч', 'Топливо': 'Дизельное' },
