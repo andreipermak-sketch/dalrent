@@ -198,10 +198,10 @@ window.TOOLS = [
     specs: {"Мощность": "630 Вт", "Производительность": "0,5 л/мин", "Объём бачка": "0,8 л", "Диаметр сопла": "2,5 мм", "Система распыления": "HVLP", "Максимальная вязкость": "170 DIN", "Вес": "1,9 кг"},
     kit: ['Насадка для стен', 'Насадка для деталей'] },
 
-  { id: 'ballu-20', cat: 'climate', name: 'Дизельная тепловая пушка Ballu 20 кВт', brand: 'Ballu', price: 900, deposit: 10000, stock: 3,
+  { id: 'ballu-20', page: true, slug: 'dizelnaya-teplovaya-pushka-ballu-20-kvt', cat: 'climate', name: 'Дизельная тепловая пушка Ballu 20 кВт', brand: 'Ballu', price: 1050, rates: { 3: 850, 7: 750 }, deposit: 10000, stock: 3,
     tasks: ['heat', 'concrete'],
     short: 'Прогрев объекта зимой и ускорение высыхания.',
-    specs: { 'Мощность': '20 кВт', 'Бак': '19 л', 'Площадь': 'до 200 м²' },
+    specs: { 'Мощность при обогреве': '20 кВт', 'Максимальная площадь обогрева': '200 м²', 'Расход топлива': '1,904 л/ч', 'Топливо': 'Дизельное' },
     kit: [] },
 
   { id: 'huter-dy6500', slug: 'benzogenerator-huter-dy6500', page: true, technicalOnly: true, image: 'img/catalog/huter-dy6500-1.jpg', images: ["img/catalog/huter-dy6500-1.jpg", "img/catalog/huter-dy6500-2.jpg"], cat: 'power', name: 'Бензогенератор Huter DY6500L 5,5 кВт', brand: 'Huter', price: 1300, rates: { 2: 1100, 7: 990 }, deposit: 15000, stock: 2,
