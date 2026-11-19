@@ -161,10 +161,10 @@ window.TOOLS = [
     specs: { 'Дальность': 'до 50 м', 'Точность': '±1,5 мм' },
     kit: ['Чехол'] },
 
-  { id: 'mixer-180', cat: 'construction', name: 'Бетономешалка 180 л', brand: 'Lebedyan', price: 900, rates: { 2: 700, 7: 630 }, stock: 3,
+  { id: 'mixer-180', page: true, slug: 'betonomeshalka-180-l', cat: 'construction', name: 'Бетономешалка 180 л', brand: 'Lebedyan', price: 750, rates: { 3: 600, 7: 500 }, stock: 3,
     tasks: ['concrete'],
     short: 'Приготовление бетона и раствора для фундамента и стяжки.',
-    specs: { 'Объём': '180 л', 'Готовый замес': '130 л', 'Питание': '220 В' },
+    specs: { 'Тип двигателя': 'Электрический', 'Мощность двигателя': '800 Вт', 'Объём барабана': '180 л', 'Объём готового раствора': '130 л', 'Напряжение питания': '220 В', 'Вес': 'Около 43–47 кг' },
     kit: [] },
   { id: 'champion-pc1645', slug: 'vibroplita-champion-pc1645', page: true, technicalOnly: true, image: 'img/catalog/champion-pc1645-1.jpg', images: ["img/catalog/champion-pc1645-1.jpg", "img/catalog/champion-pc1645-2.jpg"], cat: 'construction', name: 'Виброплита Champion PC1645RH', brand: 'Champion', price: 1800, stock: 1,
     tasks: ['concrete', 'garden'],
