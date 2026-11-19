@@ -22,7 +22,6 @@
       const t = tools[i.id];
       base += t.price * days * i.qty;
       rent += dayPrice(t, days) * days * i.qty;
-      deposit += t.deposit * i.qty;
       if (t.consumables) {
         const c = t.consumables;
         const quantity = c.qty * i.qty;
@@ -32,7 +31,7 @@
       }
     });
     const total = rent + consumables + delivery;
-    return { days, base, rent, discount: base - rent, deposit, consumables, consumableItems, delivery, total, payable: total + deposit };
+    return { days, base, rent, discount: base - rent, deposit, consumables, consumableItems, delivery, total, payable: total };
   }
   root.DALRENT_PRICING = { dayPrice, rateBands, calculate };
 })(typeof window === 'undefined' ? globalThis : window);

@@ -30,7 +30,6 @@
     const key = (catById[tool.cat] || {}).icon || 'bolt';
     return `<svg class="tool-icon" viewBox="0 0 64 64" aria-hidden="true">${ICONS[key]}</svg>`;
   }
-  function depositText(tool) { return tool.depositPending ? "Уточняется" : fmt(tool.deposit) + " ₽"; }
   function media(tool) {
     return tool.image ? `<img src="${esc(tool.image)}" alt="${esc(tool.name)}" loading="lazy">` : iconFor(tool);
   }
@@ -189,11 +188,10 @@
           <div class="price-table" ${tariffRows(t).length === 4 ? 'style="grid-template-columns:repeat(2,minmax(0,1fr))"' : ''}>
             ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b></div>`).join('')}
           </div>
-          <p class="deposit-note">Залог: <b>${depositText(t)}</b>${t.depositPending ? "" : " — возвращается при сдаче инструмента"}</p>
           <h4>Характеристики</h4>
           <table class="specs">${Object.entries(t.specs).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>
           ${tasks.length ? `<h4>Подходит для</h4><p style="margin:0;font-size:14px">${esc(tasks.join(' · '))}</p>` : ''}
-          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно, в стоимость аренды не включён.</p></div>` : ''}
+          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b></div>` : ''}
           <div class="product__actions">
             <button class="btn btn--primary btn--lg" data-book="${t.id}">Забронировать</button>
             <button class="btn btn--ghost btn--lg" data-add-close="${t.id}">${inCart(t.id) ? '✓ В списке' : 'Добавить в список'}</button>
@@ -214,7 +212,7 @@
       return;
     }
     document.title = t.name + ' — аренда во Владивостоке | DALRENT';
-    document.querySelector('meta[name="description"]').content = t.short + ' Аренда от ' + dayPrice(t, 7) + ' ₽/сутки. Залог ' + (t.depositPending ? 'уточняется' : t.deposit + ' ₽') + '.';
+    document.querySelector('meta[name="description"]').content = t.short + ' Аренда от ' + dayPrice(t, 7) + ' ₽/сутки.';
     const combo = t.combo ? toolById[t.combo] : null;
     const consumablesText = tool => tool.consumables ? `${tool.consumables.qty} × ${fmt(tool.consumables.unitPrice)} ₽ = ${fmt(tool.consumables.qty * tool.consumables.unitPrice)} ₽` : '';
     const savings = (tool, days) => tool.components.reduce((sum, key) => sum + dayPrice(toolById[key], days), 0) - dayPrice(tool, days);
@@ -234,15 +232,13 @@
             ${tariffRows(t).map(band => `<div><span>${band.label}</span><b>${fmt(band.price)} ₽</b><span>за сутки</span></div>`).join('')}
           </div>
           <p class="deposit-note">${t.priceEstimated ? "Ориентировочные цены аренды. Точную стоимость подтвердит менеджер." : "Тариф применяется ко всему сроку аренды."}</p>
-          <div class="product-deposit"><span>Возвратный залог</span><b>${depositText(t)}</b></div>
-          ${t.components ? '<p class="deposit-note">Залог за весь комплект — 3 000 ₽. Дополнительного залога за пылесос нет.</p>' : ''}
           ${t.consumables ? `<div class="consumables-note"><b>Диски: ${consumablesText(t)}</b><p>Оплачиваются дополнительно при получении и остаются у вас после аренды.</p></div>` : ''}
-          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b><p>Оплачивается отдельно, в стоимость аренды не включён.</p></div>` : ''}
+          ${t.wearPricePerMm ? `<div class="consumables-note"><b>Износ диска — ${fmt(t.wearPricePerMm)} ₽ за 1 мм</b></div>` : ''}
           <div class="product__actions"><button class="btn btn--primary btn--lg" data-book="${t.id}">Рассчитать аренду</button><button class="btn btn--ghost" data-add="${t.id}">В список аренды</button></div>
           <p class="deposit-note">Выберите даты — покажем аренду, расходники и всю сумму при получении.</p>
         </div>
       </div>
-      ${combo ? `<section class="combo-offer" id="combo"><div><p class="eyebrow">Дополнительно к штроборезу</p><h2>Взять вместе с пылесосом</h2><p>${esc(toolById[combo.parent].name)} + строительный пылесос Vactool B12M20.</p><p>Цена за весь комплект: <b>1–2 суток — ${fmt(dayPrice(combo, 1))} ₽/сутки; 3–6 суток — ${fmt(dayPrice(combo, 3))} ₽/сутки; от 7 суток — ${fmt(dayPrice(combo, 7))} ₽/сутки.</b></p>${combo.priceNote ? `<p>${esc(combo.priceNote)}</p>` : ''}<p>Общий возвратный залог — ${fmt(combo.deposit)} ₽. ${combo.consumables ? `Диски: ${consumablesText(combo)} дополнительно, остаются у вас.` : ''}</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div>${t.id === combo.parent ? `<button class="btn btn--primary" data-book="${combo.id}">Взять с пылесосом</button>` : `<a class="btn btn--primary" href="${pageUrl(combo.id)}">Выбрать на странице штробореза →</a>`}</section>` : ''}
+      ${combo ? `<section class="combo-offer" id="combo"><div><p class="eyebrow">Дополнительно к штроборезу</p><h2>Взять вместе с пылесосом</h2><p>${esc(toolById[combo.parent].name)} + строительный пылесос Vactool B12M20.</p><p>Цена за весь комплект: <b>1–2 суток — ${fmt(dayPrice(combo, 1))} ₽/сутки; 3–6 суток — ${fmt(dayPrice(combo, 3))} ₽/сутки; от 7 суток — ${fmt(dayPrice(combo, 7))} ₽/сутки.</b></p>${combo.priceNote ? `<p>${esc(combo.priceNote)}</p>` : ''}<p>${combo.consumables ? `Диски: ${consumablesText(combo)} дополнительно, остаются у вас.` : ''}</p><p>Экономия за сутки: ${[1, 3, 7].map(d => fmt(savings(combo, d)) + ' ₽').join(' / ')} для сроков 1–2 / 3–6 / от 7 суток.</p></div>${t.id === combo.parent ? `<button class="btn btn--primary" data-book="${combo.id}">Взять с пылесосом</button>` : `<a class="btn btn--primary" href="${pageUrl(combo.id)}">Выбрать на странице штробореза →</a>`}</section>` : ''}
       ${t.components ? `<section class="combo-offer"><div><h2>Экономия с комбо</h2><p>На каждые сутки аренды: ${[1, 3, 7].map(d => fmt(savings(t, d)) + ' ₽').join(' / ')} при сроке 1–2 / 3–6 / от 7 суток.</p><p>Диски оплачиваются отдельно: 1 400 ₽ за два диска.</p></div></section>` : ''}
       <div class="product-details-grid">
         <section><h2>Характеристики</h2><table class="specs"><tbody>${Object.entries(t.specs).map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('')}</tbody></table>
@@ -315,7 +311,6 @@
     const days = b.start && b.end ? daysBetween(b.start, b.end) : 1;
     const delivery = b.delivery === 'outside' ? CFG.outsideDeliveryPrice : 0;
     const result = window.DALRENT_PRICING.calculate(state.cart, toolById, days, delivery);
-    result.depositPending = state.cart.some(i => toolById[i.id].depositPending);
     result.priceEstimated = state.cart.some(i => toolById[i.id].priceEstimated);
     return result;
   }
@@ -345,7 +340,7 @@
         const t = toolById[i.id];
         return `<div class="cart-item">
           <div class="cart-item__icon">${media(t)}</div>
-          <div><div class="cart-item__name">${esc(t.name)}</div><div class="cart-item__price">${fmt(dayPrice(t, c.days))} ₽ / сутки · залог: ${depositText(t)}</div></div>
+          <div><div class="cart-item__name">${esc(t.name)}</div><div class="cart-item__price">${fmt(dayPrice(t, c.days))} ₽ / сутки</div></div>
           <div class="qty"><button data-qty="${t.id}" data-d="-1" aria-label="Меньше">−</button><span>${i.qty}</span><button data-qty="${t.id}" data-d="1" aria-label="Больше">+</button></div>
         </div>`;
       }).join('')}</div>
@@ -370,11 +365,9 @@
           ${b.delivery !== 'pickup' ? `<div><span>Доставка</span><span>${c.delivery ? 'от ' + fmt(c.delivery) + ' ₽' : 'Бесплатно'}</span></div>` : ''}
           ${c.consumables ? `${c.consumableItems.map(i => `<div><span>${esc(i.name)} · ${i.quantity} шт. × ${fmt(i.unitPrice)} ₽</span><span>${fmt(i.total)} ₽</span></div>`).join('')}<p class="deposit-note">Диски оплачиваются при получении и остаются у вас.</p>` : ''}
           <div><span>Аренда и расходы</span><span>${c.delivery ? 'от ' : ''}${fmt(c.total)} ₽</span></div>
-          <div class="muted"><span>Возвратный залог</span><span>${c.depositPending ? (c.deposit ? fmt(c.deposit) + " ₽ + уточняется" : "Уточняется") : fmt(c.deposit) + " ₽"}</span></div>
-          ${c.depositPending ? '<p class="deposit-note">В сумму не включён неуточнённый залог. Его размер сообщит менеджер.</p>' : ''}
           ${c.priceEstimated ? '<p class="deposit-note">Расчёт предварительный: цены аренды подтвердит менеджер.</p>' : ''}
-          ${state.cart.filter(i => toolById[i.id].wearPricePerMm).map(i => `<p class="deposit-note">${esc(toolById[i.id].name)}: износ диска — ${fmt(toolById[i.id].wearPricePerMm)} ₽ за 1 мм. Оплачивается отдельно, в стоимость аренды не включён.</p>`).join('')}
-          <div class="total"><span>При получении</span><span>${c.delivery || c.depositPending ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
+          ${state.cart.filter(i => toolById[i.id].wearPricePerMm).map(i => `<p class="deposit-note">${esc(toolById[i.id].name)}: износ диска — ${fmt(toolById[i.id].wearPricePerMm)} ₽ за 1 мм.</p>`).join('')}
+          <div class="total"><span>При получении</span><span>${c.delivery ? 'от ' : ''}${fmt(c.payable)} ₽</span></div>
           ${c.delivery ? '<p class="deposit-note">Точную стоимость доставки за город подтвердит менеджер.</p>' : ''}
         </div>
 
@@ -437,8 +430,8 @@
       delivery: b.delivery !== 'pickup' ? { type: b.delivery === 'outside' ? 'За город' : 'По городу', address: b.address, price: c.delivery, estimated: b.delivery === 'outside' } : { type: 'Самовывоз' },
       items: state.cart.map(i => ({ id: i.id, name: toolById[i.id].name, qty: i.qty, pricePerDay: dayPrice(toolById[i.id], c.days) })),
       wearItems: state.cart.filter(i => toolById[i.id].wearPricePerMm).map(i => ({ name: toolById[i.id].name, pricePerMm: toolById[i.id].wearPricePerMm, qty: i.qty })),
-      depositPending: c.depositPending, priceEstimated: c.priceEstimated,
-      rent: c.rent, consumables: c.consumables, consumableItems: c.consumableItems, total: c.total, deposit: c.deposit, payable: c.payable,
+      priceEstimated: c.priceEstimated,
+      rent: c.rent, consumables: c.consumables, consumableItems: c.consumableItems, total: c.total, payable: c.payable,
     };
 
     const btn = form.querySelector('[type=submit]');
@@ -463,7 +456,7 @@
         <div class="success__icon">✓</div>
         <h3>Заявка ${order.number} получена</h3>
         <p>Менеджер свяжется с вами по номеру ${esc(order.customer.phone)}, чтобы подтвердить наличие, стоимость и бронь.</p>
-        <p>Аренда: <b>${fmt(order.rent)} ₽</b>, расходники: <b>${fmt(order.consumables)} ₽</b>, залог: <b>${order.depositPending ? "уточняется" : fmt(order.deposit) + " ₽"}</b></p><p>При получении: <b>${order.delivery.estimated || order.depositPending ? 'от ' : ''}${fmt(order.payable)} ₽</b></p>
+        <p>Аренда: <b>${fmt(order.rent)} ₽</b>, расходники: <b>${fmt(order.consumables)} ₽</b></p><p>При получении: <b>${order.delivery.estimated ? 'от ' : ''}${fmt(order.payable)} ₽</b></p>
         <button class="btn btn--dark" data-close>Готово</button>
       </div>`;
   }
@@ -503,11 +496,11 @@
       `${o.delivery.type}${o.delivery.address ? ': ' + o.delivery.address : ''}`,
       ...o.items.map(i => `• ${i.name} × ${i.qty} — ${i.pricePerDay} ₽/сут`),
       `Аренда: ${o.rent} ₽; диски: ${o.consumables} ₽`,
-      ...(o.wearItems || []).map(i => `Износ диска (${i.name}, ${i.qty} шт.): ${i.pricePerMm} ₽ за 1 мм, оплачивается отдельно, в стоимость аренды не включён.`),
+      ...(o.wearItems || []).map(i => `Износ диска (${i.name}, ${i.qty} шт.): ${i.pricePerMm} ₽ за 1 мм.`),
       ...(o.consumableItems || []).map(i => `Расходник: ${i.name} × ${i.quantity} — ${i.total} ₽`),
       o.delivery.type !== 'Самовывоз' ? `Доставка: ${o.delivery.estimated ? 'от ' : ''}${o.delivery.price} ₽` : '',
-      `Итого: ${o.delivery.estimated ? 'от ' : ''}${o.total} ₽, залог: ${o.depositPending ? 'уточняется' : o.deposit + ' ₽'}`,
-      `При получении: ${o.delivery.estimated || o.depositPending ? 'от ' : ''}${o.payable} ₽`,
+      `Итого: ${o.delivery.estimated ? 'от ' : ''}${o.total} ₽`,
+      `При получении: ${o.delivery.estimated ? 'от ' : ''}${o.payable} ₽`,
       o.priceEstimated ? 'Цены предварительные, требуют подтверждения менеджером.' : '',
       o.customer.comment ? `Комментарий: ${o.customer.comment}` : '',
     ].filter(Boolean).join('\n');
